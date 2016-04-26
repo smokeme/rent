@@ -38,7 +38,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
     objects = CustomUserManager()
 
-    fav_artists = models.ManyToManyField('main.Artist', null=True,blank=True)
+    # fav_artists = models.ManyToManyField('main.Artist', null=True,blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
