@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% if request.user.is_authenticated %}
+	<a href="/logout/">logout</a>
+{% else %}
+	<a href="/login/">login</a>
+{% endif %}
+<br>
+
+{{ apartment.name }}<br>
+{{ apartment.rent }}<br>
+{{ apartment.description }}<br>
+{{ apartment.date_added }}<br>
+{{ apartment.category }}<br>
+
+{% endblock %}
