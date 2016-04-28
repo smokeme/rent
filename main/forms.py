@@ -1,16 +1,16 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from main.models import CustomUser
+from main.models import CustomUser, Apartment
 
 class CreateApartmentForm(forms.ModelForm):
     class Meta:
         model = Apartment
-        fields = '__all__',
+        fields = '__all__'
    
 class EditApartmentForm(forms.ModelForm):
     class Meta:
         model = Apartment
-        fields = '__all__',
+        fields = '__all__'
 
 class CustomUserCreationForm(UserCreationForm):
 	def __init__(self, *args, **kwargs):

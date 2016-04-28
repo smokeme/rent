@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% block body %}
 <form action='/edit_apartment/{{ apartment.pk }}/' method='POST'>
 {% csrf_token %}

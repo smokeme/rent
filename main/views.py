@@ -1,7 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse, Http404
 from main.models import *
 # Create your views here.
@@ -19,9 +15,9 @@ from django.contrib.auth import authenticate, login, logout
 from main.forms import CustomUserCreationForm, CustomUserLoginForm, EditProfileForm, CreateApartmentForm, EditApartmentForm
 
 
-import requests
-import os
-import sys
+# import requests
+# import os
+# import sys
 
 
 # Create your views here.
@@ -43,55 +39,55 @@ def ajax_search(request):
 	context = {}
 	return render_to_response('ajax_search.html', context, context_instance=RequestContext(request))
 
-def details_view(request):
-	xtype = request.GET.get('xtype', '')
-	xid = request.GET.get('xid', '')
-	context = {}
-	model = None
-	if xtype == "genre":
-		model = Genre
-		dic = {'genre_id':xid}
-	if xtype == "album":
-		model = Album
-		dic = {'album_id':xid}
-	if xtype == "artist":
-		model = Artist
-		dic = {'artist_id':xid}
-	if xtype == "track":
-		model = Track
-		dic = {'track_id':xid}
+# def details_view(request):
+# 	xtype = request.GET.get('xtype', '')
+# 	xid = request.GET.get('xid', '')
+# 	context = {}
+# 	model = None
+# 	if xtype == "genre":
+# 		model = Genre
+# 		dic = {'genre_id':xid}
+# 	if xtype == "album":
+# 		model = Album
+# 		dic = {'album_id':xid}
+# 	if xtype == "artist":
+# 		model = Artist
+# 		dic = {'artist_id':xid}
+# 	if xtype == "track":
+# 		model = Track
+# 		dic = {'track_id':xid}
 
-	grabit(xtype , xid)
-	try:
-		xobject = model.objects.get(**dic)
+# 	grabit(xtype , xid)
+# 	try:
+# 		xobject = model.objects.get(**dic)
 
-	except Exception, e:
-		xobject = "Failed"
-	context['xtype'] = xtype
-	context['xobject'] = xobject
-	return render_to_response('details.html', context, context_instance=RequestContext(request))
+# 	except Exception, e:
+# 		xobject = "Failed"
+# 	context['xtype'] = xtype
+# 	context['xobject'] = xobject
+# 	return render_to_response('details.html', context, context_instance=RequestContext(request))
 
 
 def list_view(request):
 	context = {}
 	type_of_search = request.GET.get('type', None)
 	search_id = request.GET.get('id', None)
-	appartments = []
+	apartments = []
 	if type_of_search == 'gov':
 		gov = Gov.objects.get(id=search_id)
 
 		for area in gov.area_set.all():
-			for appartment in area.appartment_set.all():
-				appartments.append(appartment)
+			for apartment in area.apartment_set.all():
+				apartments.append(apartment)
 
-		context['appartments'] = appartments
+		context['apartments'] = apartments
 
 	elif type_of_search == 'area':
-		area = Area.object.get(id=search_id)
-		for appartment in area.appartment_set.all():
-			appartments.append(appartment)
-		context['appartments'] = appartments
-	return render(context, 'list_view.html', request)
+		area = Area.objects.get(id=search_id)
+		for apartment in area.apartment_set.all():
+			apartments.append(apartment)
+		context['apartments'] = apartments
+	return render(request, 'list_view.html', context)
 
 
 
@@ -99,7 +95,7 @@ def apartment_detail(request, pk):
 	context = {}
 	apartment = Apartment.objects.get(pk=pk)
 	context['apartment'] = apartment
-	return render('apartment_detail.html', context)
+	return render(request, 'apartment_detail.html', context)
 
 @staff_member_required
 def create_apartment(request):
@@ -112,14 +108,14 @@ def create_apartment(request):
 		if form.is_valid():
 			form.save()
 
-		context['form'] = form 
+		context['form'] = form
 	return render_to_response('create_apartment.html', context_instance=RequestContext(request))
 
 @staff_member_required
 def edit_apartment(request, pk):
 	context = {}
 	apartment = Apartment.objects.get(pk=pk)
-	context['apartment'] = apartment 
+	context['apartment'] = apartment
 	form = CreateApartmentForm(request.POST or None, instance=apartment)
 	context['form'] = form
 	if form.is_valid():
@@ -149,7 +145,7 @@ def sign_up(request):
 			try:
 				login(request, auth_user)
 			except Exception, e:
-				print e 
+				print e
 				return HttpResponse('Error, try again <a href="/signup/">here</a>')
 	return render(request, 'signup.html', context)
 
@@ -169,7 +165,7 @@ def login_view(request):
 				message = """
 				username or password incorrect, try again!
 				<a href='/login/'>login</a>
-				""" 
+				"""
 				return HttpResponse(message)
 	return render(request, 'login.html', context)
 
