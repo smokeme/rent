@@ -30,5 +30,8 @@ urlpatterns = [
     url(r'^search/$', 'main.views.ajax_search'),
     url(r'^json_response/$', 'main.views.json_response'),
 
+    url(r'^homepage/$', 'main.views.homepage'),
+    url(r'^search_view/$', 'main.views.search_view'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

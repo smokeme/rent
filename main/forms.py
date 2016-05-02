@@ -2,6 +2,18 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from main.models import CustomUser, Apartment
 
+class Searchbox(forms.ModelForm):
+    parking = forms.IntegerField(required=False)
+    internet = forms.BooleanField(required=False)
+    pets = forms.BooleanField(required=False)
+    maidroom = forms.BooleanField(required=False)
+    lift = forms.BooleanField(required=False)
+    balcony = forms.BooleanField(required=False)
+    bills = forms.BooleanField(required=False)
+    class Meta:
+        model = Apartment
+        fields = ['area',]
+
 class CreateApartmentForm(forms.ModelForm):
     class Meta:
         model = Apartment

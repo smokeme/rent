@@ -9,10 +9,10 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from main.forms import *
+
 from django.contrib.auth import authenticate, login, logout
 #forms
-from main.forms import CustomUserCreationForm, CustomUserLoginForm, EditProfileForm, CreateApartmentForm, EditApartmentForm
+from main.forms import *
 
 
 # import requests
@@ -95,7 +95,7 @@ def apartment_detail(request, pk):
 	context = {}
 	apartment = Apartment.objects.get(pk=pk)
 	context['apartment'] = apartment
-	return render(request, 'apartment_detail.html', context)
+	return render(request, 'detail.html', context)
 
 @staff_member_required
 def create_apartment(request):
@@ -198,3 +198,46 @@ def edit_profile(request):
 	else:
 		print form.errors
 	return render(request, 'edit_profile.html', context)
+
+def homepage(request):
+	return render(request, 'index.html')
+
+def search_view(request):
+    context = {}
+    context['form'] = Searchbox()
+    if request.method == 'POST':
+        form = Searchbox(request.POST or None)
+        context['form'] = form
+        if form.is_valid():
+            x = {}
+            if form.cleaned_data.get('parking', None) != None:
+                x['parking__get']=form.cleaned_data.get('parking', '0')
+            if form.cleaned_data.get('internet', None) is True:
+                x['internet']=form.cleaned_data.get('internet', None)
+            if form.cleaned_data.get('pets', None) is True:
+                x['pets']=form.cleaned_data.get('pets', None)
+            if form.cleaned_data.get('maidroom', None) is True:
+                x['maidroom']=form.cleaned_data.get('maidroom', None)
+            if form.cleaned_data.get('lift', None) is True:
+                x['lift']=form.cleaned_data.get('lift', None)
+            if form.cleaned_data.get('balcony', None) is True:
+                x['balcony']=form.cleaned_data.get('balcony', None)
+            if form.cleaned_data.get('bills', None) is True:
+                x['bills']=form.cleaned_data.get('bills', None)
+            if form.cleaned_data.get('area', None) != None:
+                area=form.cleaned_data.get('area', None)
+                search_result = area.apartment_set.filter(**x)
+                # print search_result
+            else:
+                areas=Area.objects.all()
+                search_result = []
+                for area in areas:
+                    if not area.apartment_set.filter(**x):
+                        empty = 'empty'
+                    else:
+                        search_result.append(area.apartment_set.filter(**x))
+                print search_result
+                context['apartments'] = search_result
+            return render(request, 'list_view.html', context)
+    print 'first'
+    return render(request, 'search.html', context)
