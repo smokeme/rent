@@ -25,12 +25,15 @@ from main.forms import *
 
 def json_response(request):
 	search_string = request.GET.get('search', '')
-	if search_string != "":
+	if search_string == "":
 		area_list = []
 		for gov in Gov.objects.filter(name__icontains=search_string):
-			area_list.append([gov.name, gov.pk, 'gov'])
+		#	x = {'name':gov.name, 'id':gov.pk,'type': 'gov'}
+			x = {'name':gov.name, 'id':gov.pk}
+			area_list.append(x)
 		for area in Area.objects.filter(name__icontains=search_string):
-			area_list.append([area.name, area.pk, 'area'])
+	#		area_list.append(['name' ,area.name, area.pk, 'area'])
+			area_list.append({'name':area.name, 'id':area.pk})
 		return JsonResponse(area_list, safe=False)
 	else:
 		return JsonResponse("", safe=False)
@@ -70,7 +73,7 @@ def ajax_search(request):
 
 def list_view(request):
 	context = {}
-	type_of_search = request.GET.get('type', None)
+	type_of_search = request.GET.get('type', 'area')
 	search_id = request.GET.get('id', None)
 	apartments = []
 	if type_of_search == 'gov':
@@ -211,7 +214,8 @@ def search_view(request):
         if form.is_valid():
             x = {}
             if form.cleaned_data.get('parking', None) != None:
-                x['parking__get']=form.cleaned_data.get('parking', '0')
+                x['parking__gte']=form.cleaned_data.get('parking', '0')
+                print x['parking__gte']
             if form.cleaned_data.get('internet', None) is True:
                 x['internet']=form.cleaned_data.get('internet', None)
             if form.cleaned_data.get('pets', None) is True:
@@ -227,7 +231,8 @@ def search_view(request):
             if form.cleaned_data.get('area', None) != None:
                 area=form.cleaned_data.get('area', None)
                 search_result = area.apartment_set.filter(**x)
-                # print search_result
+                print x
+                print area
             else:
                 areas=Area.objects.all()
                 search_result = []
@@ -240,4 +245,4 @@ def search_view(request):
                 context['apartments'] = search_result
             return render(request, 'list_view.html', context)
     print 'first'
-    return render(request, 'search.html', context)
+    return render(request, 'search_view.html', context)

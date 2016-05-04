@@ -11,9 +11,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!-- JS file -->
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+<script src="{% static 'js/jquery.easy-autocomplete.min.js' %}"></script> 
+
+<!-- CSS file -->
+<link rel="stylesheet" href="{% static 'css/easy-autocomplete.min.css' %}"> 
+
+<!-- Additional CSS Themes file - not required-->
+<link rel="stylesheet" href="{% static 'css/easy-autocomplete.themes.min.css' %}"> 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--js-->
-<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <!--js-->
 <!---fonts-->
@@ -36,8 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
 <script src="{% static 'js/owl.carousel.js' %}"></script>
 	<script>
-		$(document).ready(function() {
-		$("#owl-demo").owlCarousel({
+		var owl = $("#owl-demo").owlCarousel({
 			items : 1,
 			lazyLoad : true,
 			autoPlay : true,
@@ -45,6 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			navigationText :  false,
 			pagination : true,
 		});
+				$(document).ready(function() {
+					owl;
 		});
 	</script>
 
@@ -124,20 +134,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<!--<li><a href="codes.html">Codes</a></li>-->
 								<li><a href="contact.html">Contact</a></li>
 								</ul>
-								
-									<div class="input-group"  style="float:right;">
+
+
+ 									<div class="input-group"  style="float:right;">
 										<form action='/search/' method='POST'>
 										{% csrf_token %}
-										<input type="text" class="form-control" placeholder="Search for...">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="button">Go!</button>
-										</span>
-										<p id='results' class='text-faded'>Results</p>
+										<input id='search' type="text" class="form-control" placeholder="Search for...">
+									
 										</form>
-									</div>
+									</div> 
 								
 									<div class="clearfix"></div>
-								b
+								
 							
 							<!--<div class="phone">
 							<span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>1-999-4563-555</span>
@@ -177,114 +185,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 <!--banner-->
-	<div class="content">
-		<div class="place-section">
-			<div class="container">
-				<h2>find your place</h2>
-				<div class="place-grids">
-					<div class="col-md-3 place-grid">
-						<h5>All Governorate</h5>
-						<select class="sel">
-						<option value="">All Locations</option>
-						<option value="">New Jersey</option>
-						<option value="">New York</option>
-						<option value="">Australia</option>
-						<option value="">Canada</option>
-						<option value="">India</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-					<h5>All Cities</h5>
-					<select class="sel">
-						<option value="">All Locations</option>
-						<option value="">New Jersey</option>
-						<option value="">New York</option>
-						<option value="">Australia</option>
-						<option value="">Canada</option>
-						<option value="">India</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-					<h5>Category</h5>
-					<select class="sel">
-						<option value="">All catigories</option>
-						<option value="">Apartment</option>
-						<option value="">Villa</option>
-						<option value="">rent</option>
-						<option value="">sale</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-						<label><input type="checkbox" value="internet"> Internet </label>
-						<label><input type="checkbox" value="pets"> Pets Allowed </label>
-						<label><input type="checkbox" value="maidroom"> Maidroom </label>
-						<label><input type="checkbox" value="lift"> Elevator </label>
-						<label><input type="checkbox" value="balcony"> Balcony </label>
-						<label><input type="checkbox" value="parking"> Parking </label>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<div class="place-grids">
-					<div class="col-md-2 place-grid1">
-						<h5>Livingrooms</h5>
-						<select class="sel">
-						<option value="">any</option>
-						<option value="">1</option>
-						<option value="">2</option>
-						<option value="">3</option>
-						<option value="">4</option>
-						<option value="">5</option>
-						</select>
-					</div>
-					<div class="col-md-2 place-grid1">
-						<h5>Bathrooms</h5>
-						<select class="sel">
-							<option value="">any</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-							<option value="">5</option>
-						</select>
-					</div>
-					<div class="col-md-2 place-grid1">
-						<h5>Min Price</h5>
-						<select class="sel">
-							<option value="">any</option>
-							<option value="">100 KD</option>
-							<option value="">200 KD</option>
-							<option value="">300 KD</option>
-							<option value="">500 KD</option>
-							<option value="">800 KD</option>
-							<option value="">1000 KD</option>
-							<option value="">1200 KD</option>
-							<option value="">1500 KD</option>
-
-						</select>
-					</div>
-					<div class="col-md-2 place-grid1">
-						<h5>Max Price</h5>
-						<select class="sel">
-							<option value="">any</option>
-							<option value="">200 KD</option>
-							<option value="">500 KD</option>
-							<option value="">1000 KD</option>
-							<option value="">2000 KD</option>
-							<option value="">3000 KD</option>
-							<option value="">5000 KD</option>
-							<option value="">+5000 KD</option>
-						</select>
-					</div>
-
-					<div class="col-md-4 search">
-					<form action="/search_view/">
-						<input type="submit" value="Search">
-					</form>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-		</div>
+{% block search %}
+{% endblock %}
 			<div class="friend-agent">
 				<div class="container">
 					<div class="friend-grids">
@@ -660,4 +562,50 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 {% block body %}
 {% endblock %}
+	<script type='text/javascript'>
+		$('#seardch').on('keyup', function() {
+		$.ajax({
+			type: 'GET',
+			url: '/json_response/',
+			data: {
+				search:$('#seadrch').val(),
+			},
+			error:function() {
+				$('#results').html('<p>Error</p>');
+
+			},
+			success:function(data) {
+				$('#results').text('');
+				for(i=0; i < data.length; i++) {
+				$('#results').append('<a class= "text-faded" href="../list_view/?id=' + data[i][2] + '&type=' + data[i][3] + '"</a>"' + data[i][1] + '');
+				}
+				}
+			
+		})
+	})
+	var options = {
+			url: '/static/js/areas.json',
+  getValue: "name",
+
+  list: {	
+  		match: {
+			enabled: true
+		},
+  	onClickEvent: function() {
+			var value = $("#search").getSelectedItemData().id;
+
+			$("#results").val(value).trigger("change");
+			document.location = '/list_view/?id=' + $("#search").getSelectedItemData().id 
+		}
+  },
+
+  theme: "square"
+};
+
+$("#search").easyAutocomplete(options);
+ser = $('#search');              
+	$(ser).on('focus', function() {
+		$('.easy-autocomplete-container').css('z-index', '99')
+	})
+</script>
 </html>
