@@ -63,9 +63,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
+
+							{% if request.user.is_authenticated %}
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Welcome : {{ request.user.first_name }}<br>
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
+                        	{% endif %}
+
+                        	{% if not request.user.is_authenticated %}
 							<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
 							<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
+							{% endif %}
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -104,25 +112,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</ul>
 									</li>
 
-									<!--<li class="dropdown ">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Property<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li><a href="defaultvariation.html">Default – Variation</a></li>
-												<li><a href="agentinsidebarvariation.html">Agent in Sidebar - Variation</a></li>
-												<li><a href="galleryvariation.html">Gallery - Variation</a></li>
-											</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li><a href="2columnsgallery.html">2 Columns Gallery</a></li>
-												<li><a href="3columnsgallery.html">3 Columns Gallery</a></li>
-												<li><a href="4columnsgallery.html">4 Columns Gallery</a></li>
-											</ul>
-									</li>-->
-								<!--<li><a href="blog.html">Blog</a></li>-->
+								
 								<!--<li><a href="codes.html">Codes</a></li>-->
-								<li><a href="contact.html">Contact</a></li>
+								<li><a href="/sendmail/">Contact</a></li>
+								<li><a href="/profile/">Profile</a></li>
 								</ul>
 								
 									<div class="input-group"  style="float:right;">
@@ -137,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</div>
 								
 									<div class="clearfix"></div>
-								b
+								
 							
 							<!--<div class="phone">
 							<span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>1-999-4563-555</span>
@@ -287,6 +280,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 			<div class="friend-agent">
 				<div class="container">
+				{% block body %}
+				{% endblock %}
 					<div class="friend-grids">
 						<div class="col-md-4 friend-grid">
 							<img src="{% static 'images/p.png' %}">
@@ -450,89 +445,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 				</div>
-			<!--Featured Properties-->
-			<!--<div class="membership">
-				<div class="container">
-					<h3>Membership Plans</h3>
-					<div class="membership-grids">
-						<div class="col-md-4 membership-grid">
-								<h4>Personal</h4>
-							<div class="membership1">
-								<h5>9.99 <span>USD</span></h5>
-								<h6>/ 1 month</h6>
-								<ul class="member">
-									<li>10 Listings</li>
-									<li>2 Featured Listings</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-4 membership-grid">
-								<h4>Professional</h4>
-							<div class="membership1">
-								<h5>49.99 <span>USD</span></h5>
-								<h6>/ 6 month</h6>
-								<ul class="member">
-									<li>40 Listings</li>
-									<li>10 Featured Listings</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md-4 membership-grid">
-								<h4>Bussiness</h4>
-							<div class="membership1">
-								<h5>99.99 <span>USD</span></h5>
-								<h6>/ 1 year</h6>
-								<ul class="member">
-									<li>Unlimited Listings</li>
-									<li>20 Featured Listings</li>
-								</ul>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-				</div>
-			</div>
-			<!--testimonials-->
-					<!--<div class="testimonials">
-						<div class="container">
-							<h3>testimonial</h3>
-							<span></span>
-							<div id="owl-demo" class="owl-carousel">
-								<div class="item">
-									<div class="col-md-2 testmonial-img">
-										<img src="{% static 'images/t1.png' %}" class="img-responsive" alt=""/>
-									</div>
-									<div class="col-md-10 testmonial-text">
-										<p>Lorem ipsum dolor sit amet, offendit volutpat sea ex, at omnium scripta pro, at omnium scripta pro, ei mea oratio malorum forensibus. ei mea oratio malorum forensibus. Sed ei omnes laoreet posidonium ei mea oratio malorum forensibus.</p>
-										<h4><a href="#">Michael Feng</a></h4>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<div class="item">
-									<div class="col-md-2 testmonial-img">
-										<img src="{% static 'images/t2.png' %}" class="img-responsive" alt=""/>
-									</div>
-									<div class="col-md-10 testmonial-text">
-										<p>Lorem ipsum dolor sit amet, offendit volutpat sea ex, at omnium scripta pro, at omnium scripta pro, ei mea oratio malorum forensibus. ei mea oratio malorum forensibus. Sed ei omnes laoreet posidonium ei mea oratio malorum forensibus.</p>
-										<h4><a href="#">Stacy Barron</a></h4>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-								<div class="item">
-									<div class="col-md-2 testmonial-img">
-										<img src="{% static 'images/t3.png' %}" class="img-responsive" alt=""/>
-									</div>
-									<div class="col-md-10 testmonial-text">
-										<p>Lorem ipsum dolor sit amet, offendit volutpat sea ex, at omnium scripta pro, at omnium scripta pro, ei mea oratio malorum forensibus. ei mea oratio malorum forensibus. Sed ei omnes laoreet posidonium ei mea oratio malorum forensibus.</p>
-										<h4><a href="#">Johnson </a></h4>
-									</div>
-									<div class="clearfix"> </div>
-								</div>
-							</div>
-						</div>
-					</div>-->
-					<!---testmonials--->
-	</div>				
+				
 					<!--footer-->
 					<div class="footer-section">
 						<div class="container">
@@ -601,10 +514,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										Welcome: {{ request.user }}<br>
 										<a href="/logout/">logout</a>
 										{% endif %}
+
 										{% if not request.user.is_authenticated %}
 											<form action='/login/' method='POST'>
 											{% csrf_token %}
 											{{ form.as_p }}
+											
 											<h3>Login</h3>
 											<input type='submit' value='Log In'>
 											<input type="text" value="Enter your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Email';}" required="">	
@@ -656,8 +571,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
+	
 			<!-- //Register -->
+
 </body>
-{% block body %}
-{% endblock %}
+
 </html>

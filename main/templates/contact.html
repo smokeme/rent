@@ -1,0 +1,281 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Real Space a Real Estates and Builders Category Flat Bootstrap Responsive Website Template | Contact :: w3layouts </title>
+<!--css-->
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<!--css-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--js-->
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!---js-->
+<!--fonts-->
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+<!---fonts-->
+<!-- pop-up -->
+<link rel="stylesheet" href="{% static 'css/swipebox.css' %}">
+			<script src="{% static 'js/jquery.swipebox.min.js' %}"></script> 
+			    <script type="text/javascript">
+					jQuery(function($) {
+						$(".swipebox").swipebox();
+					});
+				</script>
+
+<!-- pop-up -->
+
+</head>
+<body>
+		<!--header-->
+			<div class="header-section">
+				<div class="container">
+					<div class="head-top">
+						<div class="social-icon">
+							<a href="#"><i class="icon"></i></a>
+							<a href="#"><i class="icon1"></i></a>
+							<a href="#"><i class="icon2"></i></a>
+							<a href="#"><i class="icon3"></i></a>
+							<a href="#"><i class="icon4"></i></a>
+						</div>
+						<div class="email">
+						<ul>
+							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
+
+							{% if request.user.is_authenticated %}
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Welcome : {{ request.user }}<br>
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
+                        	{% endif %}
+
+                        	{% if not request.user.is_authenticated %}
+							<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+							<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
+							{% endif %}
+						</ul>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<nav class="navbar navbar-default">
+					<!--Brand and toggle get grouped for better mobile display-->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>				  
+							<div class="navbar-brand">
+								<h1><a href="index.html"><span>Real </span>Space</a></h1>
+							</div>
+						</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="/homepage/">Home <span class="sr-only">(current)</span></a></li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li><a href="about.html">About</a></li>
+												<li><a href="services.html">Services</a></li>
+												<li><a href="agents.html">Agents</a></li>
+												<li><a href="forrent.html">For Rent</a></li>
+												<li><a href="forsale.html">For Sale</a></li>
+												<li><a href="pricing.html">Pricing</a></li>
+												<li><a href="faqs.html">FAQs</a></li>
+												<li><a href="idxpress.html">IDXpress</a></li>
+												<li><a href="terms.html">Terms of Use</a></li>
+												<li><a href="privacy.html">Privacy Policy</a></li>
+											</ul>
+									</li>
+
+								
+								<!--<li><a href="codes.html">Codes</a></li>-->
+								<li><a href="/sendmail/">Contact</a></li>
+								<li><a href="/profile/">Profile</a></li>
+								</ul>
+								
+									<div class="input-group"  style="float:right;">
+										<form action='/search/' method='POST'>
+										{% csrf_token %}
+										<input type="text" class="form-control" placeholder="Search for...">
+										<span class="input-group-btn">
+											<button class="btn btn-default" type="button">Go!</button>
+										</span>
+										<p id='results' class='text-faded'>Results</p>
+										</form>
+									</div>
+							<div class="clearfix"></div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		<!--header-->
+		<!--banner-->
+		<div class="banner-section">
+			<div class="container">
+				<h2>Contact</h2>
+			</div>
+		</div>
+		<!--banner-->
+
+		<div class="content">
+			<div class="contact-section">
+				<div class="container">
+					<div class="contact-grids">
+						<div class="col-md-8 contact-grid">
+							<h5>Fill out the form and we will get back to you within 24 hours</h5>
+							<p>Send us any suggestions/complaints or if you need any assistance</p>
+							<form method="post" action="/sendmail/">{% csrf_token %}
+								<div class="name">
+									<span class="span">
+										<input name= "firstname" class="inputtext" type="text" value="First Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}" required="">
+										<input name= "lastname" class="inputtext" type="text" value="Last Name " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}" required="">
+									</span>
+								</div>
+
+								
+									<input name="email" class="inputtext" type="email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+
+								
+								<div class="subject">
+									<input name="subject" class="inputtext" type="text" value="Subject" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Subject';}" required="">
+								</div>
+								<div class="message">
+									<textarea name="message" class="inputtextarea" type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Special Instruction/Comments...';}" required="">Message...</textarea>
+								</div>
+							
+
+								<div class="button">
+									<input class="submitform" type="submit" name="submitform" value="Send Message" >
+								</div>
+							</form>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!---footer-->
+			<div class="footer-section">
+				<div class="container">
+					<div class="footer-grids">
+						<div class="col-md-3 footer-grid">
+							<h4>About Real Homes</h4>
+							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+						</div>
+						<div class="col-md-3 footer-grid">
+							<h4>Recent Posts</h4>
+							<ul>
+								<li><a href="#">Lorem Post With Image Format</a></li>
+								<li><a href="#">Example Video Blog Post</a></li>
+								<li><a href="#">Example Post With Gallery Post </a></li>
+								<li><a href="#">Example Video Blog Post</a></li>
+								<li><a href="#">Lorem Post With Image Format</a></li>
+								<li><a href="#">Example Video Blog Post</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 footer-grid">
+							<h4>Useful links</h4>
+							<ul>
+								<li><a href="terms.html">Terms of Use</a></li>
+								<li><a href="privacy.html">Privacy Policy</a></li>
+								<li><a href="contact.html">Contact Support </a></li>
+								<li><a href="agents.html"> All Agents</a></li>
+								<li><a href="blog.html">Blog</a></li>
+								<li><a href="faqs.html">FAQs</a></li>
+							</ul>
+						</div>
+						<div class="col-md-3 footer-grid">
+							<h4>Get In Touch</h4>
+							<p>8901 Marmora Road</p>
+							<p>Glasgow, DO4 89GR.</p>
+							<p>Freephone : +1 234 567 890</p>
+							<p>Telephone : +1 234 567 890</p>
+							<p>FAX : + 1 234 567 890</p>
+							<p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</div>
+			<!---footer--->
+			<!--copy-->
+			<div class="copy-section">
+				<div class="container">
+					<p>&copy; 2016 Real Space. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+				</div>
+			</div>
+		<!--copy-->
+<!-- login -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content modal-info">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+						</div>
+						<div class="modal-body real-spa">
+							<div class="login-grids">
+								<div class="login">
+									
+									<div class="login-right">
+										<form>
+											<h3>Login</h3>
+											<input type="text" value="Enter your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Email';}" required="">	
+											<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">	
+											<h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
+											<div class="single-bottom">
+												<input type="checkbox"  id="brand" value="">
+												<label for="brand"><span></span>Remember Me.</label>
+											</div>
+											<input type="submit" value="Login Now" >
+										</form>
+									</div>
+																
+								</div>
+								<p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //login -->
+			<!-- Register -->
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content modal-info">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+						</div>
+						<div class="modal-body real-spa">
+							<div class="login-grids">
+								<div class="login">
+									<div class="login-right">
+										<form>
+											<h3>Register </h3>
+											<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+											<input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
+											<input type="text" value="Email id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">	
+											<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">	
+											
+											<input type="submit" value="Register Now" >
+										</form>
+									</div>
+									<div class="clearfix"></div>								
+								</div>
+								<p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //Register -->
+</body>
+</html>

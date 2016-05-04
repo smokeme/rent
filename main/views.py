@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse, Http404
+from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
 from main.models import *
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
@@ -13,14 +13,85 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import authenticate, login, logout
 #forms
 from main.forms import *
-
-
+#email
+from django.views.generic.base import TemplateView
+from django.core.mail import send_mail, BadHeaderError
+from django.conf import settings 
 # import requests
 # import os
 # import sys
 
 
 # Create your views here.
+# def sendmail(request):
+# 	if request.method == 'POST':
+# 		form = EmailForm(request.POST)
+	
+# 		if form.is_valid():
+# 			firstname = form.cleaned_data['firstname']
+# 			lastname = form.cleaned_data['lastname']
+# 			email = form.cleaned_data['email']
+# 			subject = form.cleaned_data['subject']
+# 			botcheck = form.cleaned_data['botcheck'].lower()
+# 			message = form.cleaned_data['message']
+
+# 			if botcheck == 'yes':
+# 				try:
+# 					fullemail = firstname + " " + lastname + " " + "<" + email + ">"
+# 					send_mail(subject, message, fullemail, ['SENDTOUSER@DOMAIN.COM'])
+# 					return HttpResponseRedirect('/thankyou/')
+				
+# 				except:
+# 					return HttpResponseRedirect('/email/')
+# 		else:
+# 			return HttpResponseRedirect('/email/')
+# 	else:
+# 		return HttpResponseRedirect('/email/') 
+
+def sendmail(request):
+	print "sendmail"
+	form = EmailForm(request.POST or None)
+	print form 
+	if form.is_valid():
+		print "form is valid"
+		firstname = form.cleaned_data.get('firstname')
+		lastname = form.cleaned_data.get('lastname')
+		email = form.cleaned_data.get('email')
+		subject = form.cleaned_data.get('subject')
+		message = form.cleaned_data.get('message')
+		
+		subject = 'Site contact form'
+		from_email = settings.EMAIL_HOST_USER
+		to_email = [from_email, 'haljeri@icloud.com']
+		contact_message = "%s: %s via %s"%(
+				firstname,  
+				message, 
+				email,)
+
+		send_mail(subject, contact_message, from_email, to_email, fail_silently=False)
+		return HttpResponseRedirect('/thankyou/')
+	context = {
+		"form": form,
+	}
+
+	return render(request, 'contact.html', context)
+
+	
+
+# def msg_confirmation(request):
+# 	form = EmailForm(request.POST or None)
+
+# 	if form.is_valid():
+# 		save_it = form.save(commit=False)
+# 		save_it.save()
+
+# 		subject = 'We Got Your Message'
+# 		message = 'Thank You for contacting us. We will get back to you as soon as we can :)'
+# 		from_email = settings.EMAIL_HOST_USER
+# 		to_list = [save_it.email, settings.EMAIL_HOST_USER]
+
+# 		messages.success(request, 'Thank you for contacting us.')
+
 
 
 def json_response(request):
@@ -172,7 +243,7 @@ def login_view(request):
 
 def logout_view(request):
 	logout(request)
-	return redirect('/signup/')
+	return redirect('/homepage/')
 
 def profile_page(request):
 	context = {}
@@ -203,41 +274,41 @@ def homepage(request):
 	return render(request, 'index.html')
 
 def search_view(request):
-    context = {}
-    context['form'] = Searchbox()
-    if request.method == 'POST':
-        form = Searchbox(request.POST or None)
-        context['form'] = form
-        if form.is_valid():
-            x = {}
-            if form.cleaned_data.get('parking', None) != None:
-                x['parking__get']=form.cleaned_data.get('parking', '0')
-            if form.cleaned_data.get('internet', None) is True:
-                x['internet']=form.cleaned_data.get('internet', None)
-            if form.cleaned_data.get('pets', None) is True:
-                x['pets']=form.cleaned_data.get('pets', None)
-            if form.cleaned_data.get('maidroom', None) is True:
-                x['maidroom']=form.cleaned_data.get('maidroom', None)
-            if form.cleaned_data.get('lift', None) is True:
-                x['lift']=form.cleaned_data.get('lift', None)
-            if form.cleaned_data.get('balcony', None) is True:
-                x['balcony']=form.cleaned_data.get('balcony', None)
-            if form.cleaned_data.get('bills', None) is True:
-                x['bills']=form.cleaned_data.get('bills', None)
-            if form.cleaned_data.get('area', None) != None:
-                area=form.cleaned_data.get('area', None)
-                search_result = area.apartment_set.filter(**x)
-                # print search_result
-            else:
-                areas=Area.objects.all()
-                search_result = []
-                for area in areas:
-                    if not area.apartment_set.filter(**x):
-                        empty = 'empty'
-                    else:
-                        search_result.append(area.apartment_set.filter(**x))
-                print search_result
-                context['apartments'] = search_result
-            return render(request, 'list_view.html', context)
-    print 'first'
-    return render(request, 'search.html', context)
+	context = {}
+	context['form'] = Searchbox()
+	if request.method == 'POST':
+		form = Searchbox(request.POST or None)
+		context['form'] = form
+		if form.is_valid():
+			x = {}
+			if form.cleaned_data.get('parking', None) != None:
+				x['parking__gte']=form.cleaned_data.get('parking', '0')
+			if form.cleaned_data.get('internet', None) is True:
+				x['internet']=form.cleaned_data.get('internet', None)
+			if form.cleaned_data.get('pets', None) is True:
+				x['pets']=form.cleaned_data.get('pets', None)
+			if form.cleaned_data.get('maidroom', None) is True:
+				x['maidroom']=form.cleaned_data.get('maidroom', None)
+			if form.cleaned_data.get('lift', None) is True:
+				x['lift']=form.cleaned_data.get('lift', None)
+			if form.cleaned_data.get('balcony', None) is True:
+				x['balcony']=form.cleaned_data.get('balcony', None)
+			if form.cleaned_data.get('bills', None) is True:
+				x['bills']=form.cleaned_data.get('bills', None)
+			if form.cleaned_data.get('area', None) != None:
+				area=form.cleaned_data.get('area', None)
+				search_result = area.apartment_set.filter(**x)
+				# print search_result
+			else:
+				areas=Area.objects.all()
+				search_result = []
+				for area in areas:
+					if not area.apartment_set.filter(**x):
+						empty = 'empty'
+					else:
+						search_result.append(area.apartment_set.filter(**x))
+				print search_result
+				context['apartments'] = search_result
+			return render(request, 'list_view.html', context)
+	print 'first'
+	return render(request, 'search.html', context)

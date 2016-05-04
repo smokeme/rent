@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 from django.conf.urls.static import static
@@ -6,6 +6,9 @@ from django.conf import settings
 
 
 from main import views
+
+from django.views.generic.base import TemplateView
+
 
 urlpatterns = [
     # Examples:
@@ -32,6 +35,11 @@ urlpatterns = [
 
     url(r'^homepage/$', 'main.views.homepage'),
     url(r'^search_view/$', 'main.views.search_view'),
+
+    #email
+    url(r'^sendmail/$', 'main.views.sendmail'),
+    url(r'^thankyou/$', TemplateView.as_view(template_name='thankyou.html'), name='thankyou'),
+    url(r'^email/$', TemplateView.as_view(template_name='email.html'), name='email'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

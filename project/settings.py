@@ -29,6 +29,12 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'main.CustomUser'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'djangoproject16@gmail.com'
+EMAIL_HOST_PASSWORD = 'codedsp16'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Application definition
 

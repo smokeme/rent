@@ -1,6 +1,15 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from main.models import CustomUser, Apartment
+from django.db import models
+
+class EmailForm(forms.Form):
+	firstname = forms.CharField(max_length=255)
+	lastname = forms.CharField(max_length=255)
+	email = forms.EmailField()
+	subject = forms.CharField(max_length=255)
+	# botcheck = forms.CharField(max_length=5)
+	message = forms.CharField()
 
 class Searchbox(forms.ModelForm):
     parking = forms.IntegerField(required=False)
