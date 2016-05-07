@@ -50,9 +50,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="email">
 						<ul>
-							<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
+							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
+
+							{% if request.user.is_authenticated %}
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/profile/">Welcome : {{ request.user.first_name }}</a><br>
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
+                        	{% endif %}
+
+                        	{% if not request.user.is_authenticated %}
 							<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
 							<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
+							{% endif %}
 						</ul>
 						</div>
 						<div class="clearfix"></div>
@@ -67,14 +75,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="icon-bar"></span>
 							</button>				  
 							<div class="navbar-brand">
-								<h1><a href="index.html"><span>Real </span>Space</a></h1>
+								<h1><a href="/homepage/"><span>Real </span>Space</a></h1>
 							</div>
 						</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
+								<li class="active"><a href="/homepage/">Home <span class="sr-only">(current)</span></a></li>
 									<li class="dropdown">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
 											<ul class="dropdown-menu">
@@ -90,29 +98,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="privacy.html">Privacy Policy</a></li>
 											</ul>
 									</li>
-									<li class="dropdown active">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Property<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li><a href="defaultvariation.html">Default – Variation</a></li>
-												<li><a href="agentinsidebarvariation.html">Agent in Sidebar - Variation</a></li>
-												<li><a href="galleryvariation.html">Gallery - Variation</a></li>
-											</ul>
-									</li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li><a href="2columnsgallery.html">2 Columns Gallery</a></li>
-												<li><a href="3columnsgallery.html">3 Columns Gallery</a></li>
-												<li><a href="4columnsgallery.html">4 Columns Gallery</a></li>
-											</ul>
-									</li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="codes.html">Codes</a></li>
-								<li><a href="contact.html">Contact</a></li>
-							</ul>
-							<div class="phone">
-							<span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>1-999-4563-555</span>
-							</div>
+
+								
+								<!--<li><a href="codes.html">Codes</a></li>-->
+								<li><a href="/sendmail/">Contact</a></li>
+								</ul>
+
+
+ 									<div class="input-group"  style="float:right;">
+										<form action='/search/' method='POST'>
+										{% csrf_token %}
+										<input id='search' type="text" class="form-control" placeholder="Search for...">
+									
+										</form>
+									</div> 
 							<div class="clearfix"></div>
 						</div>
 					</nav>
@@ -150,16 +149,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"></div>
 						<div class="properties-details">
 							<div class="col-md-2 properties-detail">
-								<h5><span>5000</span> area</h5>
+								<h5><span>{{apartment.space}}</span> Meter</h5>
 							</div>
 							<div class="col-md-2 properties-detail">
-								<h5><span>3</span> baths</h5>
+								<h5><span>{{apartment.bathrooms}}</span> baths</h5>
 							</div>
 							<div class="col-md-2 properties-detail">
-								<h5><span>4</span> beds</h5>
+								<h5><span>{{apartment.bedrooms}}</span> beds</h5>
 							</div>
 							<div class="col-md-2 properties-detail">
-								<h5><span>3</span> parking</h5>
+								<h5><span>{{apartment.parking}}</span> parking</h5>
 							</div>
 							<div class="col-md-2 properties-detail">
 								<a href="#">Favorites</a>
@@ -169,27 +168,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+						<p>{{apartment.description}}</p>
 						<div class="additional-details">
 							<h3>additional details</h3>
 							<ul>
-								<li><span>AC</span> : Ceiling Fan(s), Central</li>
-								<li><span>ACRES</span> : 0.15</li>
-								<li><span>ACRES SOURCE</span> : Assessor</li>
-								<li><span>AP #</span> :  999-493-19</li>
-								<li><span>APPLIANCES</span> :  Dishwasher, Freestanding Gas Range, Garbage Disposal, Microwave</li>
-								<li><span>BATHROOM DESCRIPTION</span> :Stall Shower</li>
-								<li><span>BEDROOM FEATURES</span> : Main Floor Master Bedroom</li>
-								<li><span>CROSS STREETS</span> :  Lincoln and Anchor</li>
-								<li><span>DINING AREA</span> :  Family Kitchen</li>
-								<li><span>DISABILITY ACCESS</span> : 36 inch or more wide halls, Doors - Swing in, Entry Slope less than 1 foot, Grab Bars in Bathroom(s), Wheelchair Accessible, Wheelchair Adaptable, Wheelchair Modifications</li>
-								<li><span>ENCLOSED YARD</span> : Wood</li>
-								<li><span>ENTRY LOCATION</span> : Ground Level - no steps </li>
-								<li><span>EXTERIOR CONSTRUCTION</span> : Stucco</li>
-								<li><span>FLOORS</span> : Ceramic Tile, Wall-to-Wall Carpet</li>
-								<li><span>HEAT</span> : Forced Air</li>
-								<li><span>MISC INTERIOR</span> : Forced Air</li>
-								<li><span>PARKING TYPE</span> :  Direct Garage Access, Driveway, Garage Door Opener</li>
+								<li><span>AREA</span> : {{apartment.area}}</li>
+								<li><span>OWNER EMAIL</span> : {{apartment.user}}</li>
+								<li><span>PRICE</span> : {{apartment.rent}}</li>
+								<li><span>CATEGORY</span> :  {{apartment.category}}</li>
+								<li><span>OWNER PHONE</span> :  {{apartment.contactphone}}</li>
+								<li><span>ADDRESS</span> :{{apartment.address}}</li>
+								<li><span>FLOOR</span> : {{apartment.floor}}</li>
+								<li><span>DATE ADDED</span> :  {{apartment.date_added}}</li>
+								<li><span>PARKING</span> :  {{apartment.parking}}</li>
+								<li><span>INTERNET</span> : {{apartment.internet}}</li>
+								<li><span>PETS ALLOWED</span> : {{apartment.pets}}</li>
+								<li><span>MAID ROOM</span> : {{apartment.maidroom}} </li>
+								<li><span>LIFT</span> : {{apartment.lift}}</li>
+								<li><span>BALCONY</span> : {{apartment.balcony}}</li>
+								<li><span>BILLS</span> : {{apartment.bills}}</li>
+
 							</ul>
 						</div>
 						<div class="note">
@@ -243,152 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"></div>
 					</div>
 					</div>
-					<div class="col-md-3 properties-right">
-						<div class="properties-top">
-							<h4>Find Your Place</h4>
-							<div class="yourplace">
-								<h5>all location</h5>
-								<select class="sel2">
-									<option value="">All Locations</option>
-									<option value="">New Jersey</option>
-									<option value="">New York</option>
-									<option value="">Australia</option>
-									<option value="">Canada</option>
-									<option value="">India</option>
-								</select>
-							</div>
-							<div class="yourplace">
-								<h5>all sub location</h5>
-								<select class="sel2">
-									<option value="">All Locations</option>
-									<option value="">New Jersey</option>
-									<option value="">New York</option>
-									<option value="">Australia</option>
-									<option value="">Canada</option>
-									<option value="">India</option>
-								</select>
-							</div>
-							<div class="yourplace">
-								<h5>Property Status</h5>
-								<select class="sel2">
-									<option value="">All status</option>
-									<option value="">none</option>
-									<option value="">open house</option>
-									<option value="">rent</option>
-									<option value="">sale</option>
-								</select>
-							</div>
-							<div class="yourplace">
-								<h5>Property Type</h5>
-								<select class="sel2">
-									<option value="">All Type</option>
-									<option value="">Commercial</option>
-									<option value="">- Office</option>
-									<option value="">- Buy</option>
-									<option value="">Residential</option>
-									<option value="">-Apartment</option>
-								</select>
-							</div>
-							<div class="yourplace-grids">
-								<div class="col-md-6 yourplace-grid">
-									<h5>Min Beds</h5>
-									<select class="sel3">
-										<option value="">any</option>
-										<option value="">1</option>
-										<option value="">2</option>
-										<option value="">3</option>
-										<option value="">4</option>
-										<option value="">5</option>
-									</select>
-								</div>
-								<div class="col-md-6 yourplace-grid">
-									<h5>Min Baths</h5>
-									<select class="sel3">
-										<option value="">any</option>
-										<option value="">1</option>
-										<option value="">2</option>
-										<option value="">3</option>
-										<option value="">4</option>
-										<option value="">5</option>
-									</select>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="yourplace-grids1">
-								<div class="col-md-6 yourplace-grid">
-									<h5>Min Price</h5>
-									<select class="sel3">
-										<option value="">any</option>
-										<option value="">$500</option>
-										<option value="">$1000</option>
-										<option value="">$2000</option>
-										<option value="">$3000</option>
-										<option value="">$4000</option>
-										<option value="">$5000</option>
-										<option value="">$75000</option>
-										<option value="">$10000</option>
-									</select>
-								</div>
-								<div class="col-md-6 yourplace-grid">
-									<h5>Max Price</h5>
-									<select class="sel3">
-										<option value="">any</option>
-										<option value="">$1000</option>
-										<option value="">$2000</option>
-										<option value="">$3000</option>
-										<option value="">$4000</option>
-										<option value="">$5000</option>
-										<option value="">$75000</option>
-										<option value="">$10000</option>
-									</select>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="search1">
-							<form>
-								<input type="submit" value="Search">
-							</form>
-							</div>
-						</div>
-						<div class="properties-middle">
-						<h4>Mortgage Calculator</h4>
-						<form>
-							<span>Total Amount</span>
-							<input type="text" placeholder="$">
-							<span>Down Payment</span>
-							<input type="text" placeholder="$">
-							<span>Interest Rate</span>
-							<input type="text" placeholder="%">
-							<span>Amortization Period</span>
-							<input type="text" placeholder="Year">
-							<span>Payment Period</span>
-							<select class="sel1">
-								<option value="">Monthly</option>
-								<option value="">Bi-Weekly</option>
-								<option value="">Weekly</option>
-							</select>
-							<input type="submit" value="calculate">
-							</form>
-						</div>
-						<div class="feature">
-							<h4>Featured Properties</h4>
-							<div class="feature-top">
-							<img src="{% static 'images/s3.jpg' %}" class="img-responsive" alt="/">
-									<h5>60 Merrick Way, Miami</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-							</div>
-							<div class="feature-top top2">
-							<img src="{% static 'images/s2.jpg' %}" class="img-responsive" alt="/">
-									<h5>Villa in Hialeah, Dade</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-							</div>
-							<div class="feature-top top2">
-							<img src="{% static 'images/s1.jpg' %}" class="img-responsive" alt="/">
-									<h5>Villa in Hialeah, Dade</h5>
-									<p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-							</div>
-						</div>
-					</div>
+
 					<div class="clearfix"></div>
 				</div>
 				</div>
@@ -510,4 +363,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- //Register -->
 
 </body>
+
+	<script type='text/javascript'>
+		$('#seardch').on('keyup', function() {
+		$.ajax({
+			type: 'GET',
+			url: '/json_response/',
+			data: {
+				search:$('#seadrch').val(),
+			},
+			error:function() {
+				$('#results').html('<p>Error</p>');
+
+			},
+			success:function(data) {
+				$('#results').text('');
+				for(i=0; i < data.length; i++) {
+				$('#results').append('<a class= "text-faded" href="../apartment_list/?id=' + data[i][2] + '&type=' + data[i][3] + '"</a>"' + data[i][1] + '');
+				}
+				}
+			
+		})
+	})
+	var options = {
+			url: '/static/js/areas.json',
+  getValue: "name",
+
+  list: {	
+  		match: {
+			enabled: true
+		},
+  	onClickEvent: function() {
+			var value = $("#search").getSelectedItemData().id;
+
+			$("#results").val(value).trigger("change");
+			document.location = '/apartment_list/?id=' + $("#search").getSelectedItemData().id 
+		}
+  },
+
+  theme: "square"
+};
+
+$("#search").easyAutocomplete(options);
+ser = $('#search');              
+	$(ser).on('focus', function() {
+		$('.easy-autocomplete-container').css('z-index', '99')
+	})
+</script>
 </html>

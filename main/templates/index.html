@@ -11,9 +11,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!-- JS file -->
+<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+
+<script src="{% static 'js/jquery.easy-autocomplete.min.js' %}"></script> 
+
+<!-- CSS file -->
+<link rel="stylesheet" href="{% static 'css/easy-autocomplete.min.css' %}"> 
+
+<!-- Additional CSS Themes file - not required-->
+<link rel="stylesheet" href="{% static 'css/easy-autocomplete.themes.min.css' %}"> 
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--js-->
-<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.js' %}"></script>
 <!--js-->
 <!---fonts-->
@@ -36,8 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
 <script src="{% static 'js/owl.carousel.js' %}"></script>
 	<script>
-		$(document).ready(function() {
-		$("#owl-demo").owlCarousel({
+		var owl = $("#owl-demo").owlCarousel({
 			items : 1,
 			lazyLoad : true,
 			autoPlay : true,
@@ -45,6 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			navigationText :  false,
 			pagination : true,
 		});
+				$(document).ready(function() {
+					owl;
 		});
 	</script>
 
@@ -66,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
 
 							{% if request.user.is_authenticated %}
-                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Welcome : {{ request.user.first_name }}<br>
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/profile/">Welcome : {{ request.user.first_name }}</a><br>
                                 <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
                         	{% endif %}
 
@@ -88,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="icon-bar"></span>
 							</button>				  
 							<div class="navbar-brand">
-								<h1><a href="index.html"><span>Real </span>Space</a></h1>
+								<h1><a href="/homepage/"><span>Real </span>Space</a></h1>
 							</div>
 						</div>
 
@@ -115,19 +125,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 								<!--<li><a href="codes.html">Codes</a></li>-->
 								<li><a href="/sendmail/">Contact</a></li>
-								<li><a href="/profile/">Profile</a></li>
 								</ul>
-								
-									<div class="input-group"  style="float:right;">
+
+
+ 									<div class="input-group"  style="float:right;">
 										<form action='/search/' method='POST'>
 										{% csrf_token %}
-										<input type="text" class="form-control" placeholder="Search for...">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="button">Go!</button>
-										</span>
-										<p id='results' class='text-faded'>Results</p>
+										<input id='search' type="text" class="form-control" placeholder="Search for...">
+									
 										</form>
-									</div>
+									</div> 
 								
 									<div class="clearfix"></div>
 								
@@ -147,130 +154,184 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<ul class="rslides" id="slider">
 					<div class="slid banner1">
 						  <div class="caption">
-								<h3>1400 Anastasia Avenue</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec pellentesque ex. Morbi iaculis mi in varius auctor. Nullam feugiat erat .</p>
-								<a href="#" class="button">know more</a>
+								<h3>Villas for Rental in Kuwait</h3>
+								<p>Search for the perfect villa to rent anywhere in Kuwait. <a href="/sendmail/">Contact Us</a> for more information.</p>
 						  </div>
 					</div>
 					<div class="slid banner2">	
 						  <div class="caption">
-								<h3>Oakland, NJ94605</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec pellentesque ex. Morbi iaculis mi in varius auctor. Nullam feugiat erat .</p>
-								<a href="#" class="button">know more</a>
+								<h3>Apartments for Rent in Kuwait</h3>
+								<p>Search for the perfect apartment to rent anywhere in Kuwait. <a href="/sendmail/">Contact Us</a> for more information.</p>
+								
 						  </div>
 					</div>
 					<div class="slid banner3">	
 						<div class="caption">
-							<h3>Florida 5, Pinecrest, FL</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec pellentesque ex. Morbi iaculis mi in varius auctor. Nullam feugiat erat .</p>
-							<a href="#" class="button">know more</a>
+							<h3>Find Your Perfect Home</h3>
+							<p>Search For Your Perfect Home.</p>
+							<a href=".place-section" class="button">Search Now!</a>
 						</div>
 					</div>
 				</ul>
 			</div>
 		</div>
 <!--banner-->
-	<div class="content">
+
+        	<div class="content">
 		<div class="place-section">
 			<div class="container">
 				<h2>find your place</h2>
 				<div class="place-grids">
+					<form action="/search_view/" method='POST'>
 					<div class="col-md-3 place-grid">
-						<h5>All Governorate</h5>
-						<select class="sel">
-						<option value="">All Locations</option>
-						<option value="">New Jersey</option>
-						<option value="">New York</option>
-						<option value="">Australia</option>
-						<option value="">Canada</option>
-						<option value="">India</option>
+					<label for="id_area"><h5> All Areas:</label> <select class='sel' id="id_area" name="area">
+						<option value="" selected="selected">---------</option>
+						<option value="1">Kuwait City</option>
+						<option value="2">Dasm?n</option>
+						<option value="3">Sharq</option>
+						<option value="4">Dasma</option>
+						<option value="5">Da&#39;iya</option>
+						<option value="6">Saw?bir</option>
+						<option value="7">Mirg?b</option>
+						<option value="8">Jibla</option>
+						<option value="9">Salhiya</option>
+						<option value="10">Bneid il-G?r</option>
+						<option value="11">Keifan</option>
+						<option value="12">Mans?riya</option>
+						<option value="13">Abdullah as-Salim suburb</option>
+						<option value="14">Nuzha</option>
+						<option value="15">Faiha&#39;</option>
+						<option value="16">Shamiya</option>
+						<option value="17">Rawda</option>
+						<option value="18">Adiliya</option>
+						<option value="19">Khaldiya</option>
+						<option value="20">Qadsiya</option>
+						<option value="21">Qurtuba</option>
+						<option value="22">Surra</option>
+						<option value="23">Yarm?k</option>
+						<option value="24">Shuwaikh</option>
+						<option value="25">Rai</option>
+						<option value="26">Ghirnata</option>
+						<option value="27">Sulaibikhat</option>
+						<option value="28">Doha</option>
+						<option value="29">Nahdha</option>
+						<option value="30">Jabir al-Ahmad City</option>
+						<option value="31">Qairaw?n</option>
+						<option value="32">Hawally</option>
+						<option value="33">Rumaithiya</option>
+						<option value="34">Jabriya</option>
+						<option value="35">Salmiya</option>
+						<option value="36">Mishrif</option>
+						<option value="37">Sha&#39;ab</option>
+						<option value="38">Bay?n</option>
+						<option value="39">Bi&#39;di&#39;</option>
+						<option value="40">Nigra</option>
+						<option value="41">Salwa</option>
+						<option value="42">Maidan Hawalli</option>
+						<option value="43">Mubarak aj-Jabir suburb</option>
+						<option value="44">South Surra</option>
+						<option value="45">Hittin</option>
+						<option value="46">Mubarak al-Kabeer</option>
+						<option value="47">Ad?n</option>
+						<option value="48">Qurain</option>
+						<option value="49">Qus?r</option>
+						<option value="50">Sabah as-Salim suburb</option>
+						<option value="51">Mis?la</option>
+						<option value="52">Abu &#39;Fteira</option>
+						<option value="53">Sabh?n</option>
+						<option value="54">Fint?s</option>
+						<option value="55">Funait?s</option>
+						<option value="56">Ahmadi</option>
+						<option value="57">Aqila</option>
+						<option value="58">Zuhar</option>
+						<option value="59">Miqwa&#39;</option>
+						<option value="60">Mahbula</option>
+						<option value="61">Rigga</option>
+						<option value="62">Hadiya</option>
+						<option value="63">Abu Hulaifa</option>
+						<option value="64">Sabahiya</option>
+						<option value="65">Mangaf</option>
+						<option value="66">Fahaheel</option>
+						<option value="67">Wafra</option>
+						<option value="68">Zoor</option>
+						<option value="69">Khairan</option>
+						<option value="70">Abdullah Port</option>
+						<option value="71">Agricultural Wafra</option>
+						<option value="72">Bneidar</option>
+						<option value="73">Jilei&#39;a</option>
+						<option value="74">Jabir al-Ali Suburb</option>
+						<option value="75">Fahd al-Ahmad Suburb</option>
+						<option value="76">Shu&#39;aiba</option>
+						<option value="77">Sabah al-Ahmad City</option>
+						<option value="78">Nuwaiseeb</option>
+						<option value="79">Khairan City</option>
+						<option value="80">Ali as-Salim suburb</option>
+						<option value="81">Sabah al-Ahmad Nautical City</option>
 						</select>
 					</div>
-					<div class="col-md-3 place-grid">
-					<h5>All Cities</h5>
-					<select class="sel">
-						<option value="">All Locations</option>
-						<option value="">New Jersey</option>
-						<option value="">New York</option>
-						<option value="">Australia</option>
-						<option value="">Canada</option>
-						<option value="">India</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-					<h5>Category</h5>
-					<select class="sel">
-						<option value="">All catigories</option>
-						<option value="">Apartment</option>
-						<option value="">Villa</option>
-						<option value="">rent</option>
-						<option value="">sale</option>
-						</select>
-					</div>
-					<div class="col-md-3 place-grid">
-						<label><input type="checkbox" value="internet"> Internet </label>
-						<label><input type="checkbox" value="pets"> Pets Allowed </label>
-						<label><input type="checkbox" value="maidroom"> Maidroom </label>
-						<label><input type="checkbox" value="lift"> Elevator </label>
-						<label><input type="checkbox" value="balcony"> Balcony </label>
-						<label><input type="checkbox" value="parking"> Parking </label>
-					</div>
-					<div class="clearfix"></div>
+
+					
 				</div>
 				<div class="place-grids">
 					<div class="col-md-2 place-grid1">
 						<h5>Livingrooms</h5>
-						<select class="sel">
+						<select class="sel" id='id_livingroom'>
 						<option value="">any</option>
-						<option value="">1</option>
-						<option value="">2</option>
-						<option value="">3</option>
-						<option value="">4</option>
-						<option value="">5</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
 						</select>
 					</div>
 					<div class="col-md-2 place-grid1">
 						<h5>Bathrooms</h5>
-						<select class="sel">
+						<select class="sel" id='id_bathroom'>
 							<option value="">any</option>
-							<option value="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-							<option value="">5</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
 						</select>
 					</div>
 					<div class="col-md-2 place-grid1">
 						<h5>Min Price</h5>
-						<select class="sel">
+						<select class="sel" id='id_minprice'>
 							<option value="">any</option>
-							<option value="">100 KD</option>
-							<option value="">200 KD</option>
-							<option value="">300 KD</option>
-							<option value="">500 KD</option>
-							<option value="">800 KD</option>
-							<option value="">1000 KD</option>
-							<option value="">1200 KD</option>
-							<option value="">1500 KD</option>
+							<option value="100">100 KD</option>
+							<option value="200">200 KD</option>
+							<option value="300">300 KD</option>
+							<option value="500">500 KD</option>
+							<option value="800">800 KD</option>
+							<option value="1000">1000 KD</option>
+							<option value="1200">1200 KD</option>
+							<option value="1500">1500 KD</option>
 
 						</select>
 					</div>
 					<div class="col-md-2 place-grid1">
 						<h5>Max Price</h5>
-						<select class="sel">
+						<select class="sel" id='maxprice'>
 							<option value="">any</option>
-							<option value="">200 KD</option>
-							<option value="">500 KD</option>
-							<option value="">1000 KD</option>
-							<option value="">2000 KD</option>
-							<option value="">3000 KD</option>
-							<option value="">5000 KD</option>
-							<option value="">+5000 KD</option>
+							<option value="200">200 KD</option>
+							<option value="500">500 KD</option>
+							<option value="1000">1000 KD</option>
+							<option value="2000">2000 KD</option>
+							<option value="3000">3000 KD</option>
+							<option value="5000">5000 KD</option>
 						</select>
 					</div>
-
+					<div class="col-md-3 place-grid">
+						<label><input type="checkbox" id='id_internet' name='internet'><h5>Internet</h5></label>
+						<label><input type="checkbox" id='id_pets' name="pets"><h5>Pets Allowed</h5></label><br>
+						<label><input type="checkbox" id='id_maidroom' name="maidroom"><h5>Maidroom</h5></label>
+						<label><input type="checkbox" id='id_lift' name="lift"><h5>Elevator</h5></label><br>
+						<label><input type="checkbox" id= 'id_balcony' name="balcony"><h5>Balcony</h5></label><br>
+						<label><input type="number" id= 'id_parking' name="parking"><h5>Parking</h5></label><br>
+					</div>
 					<div class="col-md-4 search">
-					<form action="/search_view/">
+					        {%csrf_token%}
 						<input type="submit" value="Search">
 					</form>
 					</div>
@@ -278,10 +339,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
+
+
 			<div class="friend-agent">
 				<div class="container">
-				{% block body %}
-				{% endblock %}
 					<div class="friend-grids">
 						<div class="col-md-4 friend-grid">
 							<img src="{% static 'images/p.png' %}">
@@ -511,7 +572,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									
 									<div class="login-right">
 										{% if request.user.is_authenticated %}
-										Welcome: {{ request.user }}<br>
+										Welcome: {{ request.user.firstname }}<br>
 										<a href="/logout/">logout</a>
 										{% endif %}
 
@@ -575,5 +636,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- //Register -->
 
 </body>
+
+{% block body %}
+{% endblock %}
+	<script type='text/javascript'>
+		$('#seardch').on('keyup', function() {
+		$.ajax({
+			type: 'GET',
+			url: '/json_response/',
+			data: {
+				search:$('#seadrch').val(),
+			},
+			error:function() {
+				$('#results').html('<p>Error</p>');
+
+			},
+			success:function(data) {
+				$('#results').text('');
+				for(i=0; i < data.length; i++) {
+				$('#results').append('<a class= "text-faded" href="../apartment_list/?id=' + data[i][2] + '&type=' + data[i][3] + '"</a>"' + data[i][1] + '');
+				}
+				}
+			
+		})
+	})
+	var options = {
+			url: '/static/js/areas.json',
+  getValue: "name",
+
+  list: {	
+  		match: {
+			enabled: true
+		},
+  	onClickEvent: function() {
+			var value = $("#search").getSelectedItemData().id;
+
+			$("#results").val(value).trigger("change");
+			document.location = '/apartment_list/?id=' + $("#search").getSelectedItemData().id 
+		}
+  },
+
+  theme: "square"
+};
+
+$("#search").easyAutocomplete(options);
+ser = $('#search');              
+	$(ser).on('focus', function() {
+		$('.easy-autocomplete-container').css('z-index', '99')
+	})
+</script>
+
 
 </html>

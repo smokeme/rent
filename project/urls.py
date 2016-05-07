@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^edit_apartment/(?P<pk>.+)/$', 'main.views.edit_apartment'),
 
     url(r'^apartment_detail/(?P<pk>.+)/$', 'main.views.apartment_detail'),
-    url(r'^list_view/$', 'main.views.list_view'),
+    url(r'^apartment_list/$', 'main.views.apartment_list'),
     url(r'^search/$', 'main.views.ajax_search'),
     url(r'^json_response/$', 'main.views.json_response'),
 

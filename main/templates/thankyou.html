@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
 
 							{% if request.user.is_authenticated %}
-                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Welcome : {{ request.user }}<br>
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Welcome : {{ request.user.firstname }}<br>
                                 <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
                         	{% endif %}
 

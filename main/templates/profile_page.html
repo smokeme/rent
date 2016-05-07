@@ -50,7 +50,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
 
 							{% if request.user.is_authenticated %}
-                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>Welcome : {{ request.user }}<br>
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/profile/">Welcome : {{ request.user.first_name }}</a><br>
                                 <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
                         	{% endif %}
 
@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="icon-bar"></span>
 							</button>				  
 							<div class="navbar-brand">
-								<h1><a href="index.html"><span>Real </span>Space</a></h1>
+								<h1><a href="/homepage/"><span>Real </span>Space</a></h1>
 							</div>
 						</div>
 
@@ -99,19 +99,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								
 								<!--<li><a href="codes.html">Codes</a></li>-->
 								<li><a href="/sendmail/">Contact</a></li>
-								<li><a href="/profile/">Profile</a></li>
 								</ul>
 								
-									<div class="input-group"  style="float:right;">
+								<div class="input-group"  style="float:right;">
 										<form action='/search/' method='POST'>
 										{% csrf_token %}
-										<input type="text" class="form-control" placeholder="Search for...">
-										<span class="input-group-btn">
-											<button class="btn btn-default" type="button">Go!</button>
-										</span>
-										<p id='results' class='text-faded'>Results</p>
+										<input id='search' type="text" class="form-control" placeholder="Search for...">
+									
 										</form>
-									</div>
+									</div> 
+								
+									<div class="clearfix"></div>
 							<div class="clearfix"></div>
 						</div>
 					</nav>
@@ -125,15 +123,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<!--banner-->
-		<p>Email: {{ user.email }}</p>
-		<p>First name: {{ user.first_name }}</p>
-		<p>Last name: {{ user.last_name }}</p>
-		<p>Date joined: {{ user.date_joined }}</p>
+							<table class="table">
+							<tbody>
+								<tr>
+									<td><h4 id="h4.-bootstrap-heading"><p>Email : {{ user.email }}</p></h4></td>
+								</tr>
+								<tr>
+									<td><h4 id="h4.-bootstrap-heading"><p>First Name : {{ user.first_name }}</p></h4></td>
+								</tr>
+								<tr>
+									<td><h4 id="h4.-bootstrap-heading"><p>Last Name : {{ user.last_name }}</p></h4></td>
+								</tr>
+								<tr>
+									<td><h4 id="h4.-bootstrap-heading"><p>Date Joined : {{ user.date_joined }}</p></h4></td>
+								</tr>
+								<tr>
+									<td><h4 id="h4.-bootstrap-heading"><a href="/edit_profile/"><span class="label label-primary">Edit</span></a></h4></td>
+								</tr>
+							</tbody>
+						</table>
 
 
-		<a href="/edit_profile/">| Edit Profile |</a>
-		<br>
-		<a href="/create_apartment/">| Add Apartment/Villa |</a>
 
 		{% block body %}
 		{% endblock %}
@@ -186,7 +196,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 			</div>
-			<!---footer--->
+			<!--footer-->
 			<!--copy-->
 			<div class="copy-section">
 				<div class="container">
@@ -258,4 +268,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- //Register -->
 </body>
+
+	<script type='text/javascript'>
+		$('#seardch').on('keyup', function() {
+		$.ajax({
+			type: 'GET',
+			url: '/json_response/',
+			data: {
+				search:$('#seadrch').val(),
+			},
+			error:function() {
+				$('#results').html('<p>Error</p>');
+
+			},
+			success:function(data) {
+				$('#results').text('');
+				for(i=0; i < data.length; i++) {
+				$('#results').append('<a class= "text-faded" href="../apartment_list/?id=' + data[i][2] + '&type=' + data[i][3] + '"</a>"' + data[i][1] + '');
+				}
+				}
+			
+		})
+	})
+	var options = {
+			url: '/static/js/areas.json',
+  getValue: "name",
+
+  list: {	
+  		match: {
+			enabled: true
+		},
+  	onClickEvent: function() {
+			var value = $("#search").getSelectedItemData().id;
+
+			$("#results").val(value).trigger("change");
+			document.location = '/apartment_list/?id=' + $("#search").getSelectedItemData().id 
+		}
+  },
+
+  theme: "square"
+};
+
+$("#search").easyAutocomplete(options);
+ser = $('#search');              
+	$(ser).on('focus', function() {
+		$('.easy-autocomplete-container').css('z-index', '99')
+	})
+</script>
 </html>

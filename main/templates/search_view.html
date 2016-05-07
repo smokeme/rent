@@ -1,9 +1,166 @@
 {% extends 'index.html' %}
-{% block body %}
-        <form action='/search_view/' method='POST'>
-        {%csrf_token%}
-            {{ form.as_p }}
-            <input type='submit' value='search' />
-        </form>
+{% block search %}
+        	<div class="content">
+		<div class="place-section">
+			<div class="container">
+				<h2>find your place</h2>
+				<div class="place-grids">
+									<form action="/search_view/" method='POST'>
+					<div class="col-md-3 place-grid">
+					<label for="id_area"><h5> All Areas:</label> <select class='sel' id="id_area" name="area">
+<option value="" selected="selected">---------</option>
+					<option value="1">Kuwait City</option>
+<option value="2">Dasm?n</option>
+<option value="3">Sharq</option>
+<option value="4">Dasma</option>
+<option value="5">Da&#39;iya</option>
+<option value="6">Saw?bir</option>
+<option value="7">Mirg?b</option>
+<option value="8">Jibla</option>
+<option value="9">Salhiya</option>
+<option value="10">Bneid il-G?r</option>
+<option value="11">Keifan</option>
+<option value="12">Mans?riya</option>
+<option value="13">Abdullah as-Salim suburb</option>
+<option value="14">Nuzha</option>
+<option value="15">Faiha&#39;</option>
+<option value="16">Shamiya</option>
+<option value="17">Rawda</option>
+<option value="18">Adiliya</option>
+<option value="19">Khaldiya</option>
+<option value="20">Qadsiya</option>
+<option value="21">Qurtuba</option>
+<option value="22">Surra</option>
+<option value="23">Yarm?k</option>
+<option value="24">Shuwaikh</option>
+<option value="25">Rai</option>
+<option value="26">Ghirnata</option>
+<option value="27">Sulaibikhat</option>
+<option value="28">Doha</option>
+<option value="29">Nahdha</option>
+<option value="30">Jabir al-Ahmad City</option>
+<option value="31">Qairaw?n</option>
+<option value="32">Hawally</option>
+<option value="33">Rumaithiya</option>
+<option value="34">Jabriya</option>
+<option value="35">Salmiya</option>
+<option value="36">Mishrif</option>
+<option value="37">Sha&#39;ab</option>
+<option value="38">Bay?n</option>
+<option value="39">Bi&#39;di&#39;</option>
+<option value="40">Nigra</option>
+<option value="41">Salwa</option>
+<option value="42">Maidan Hawalli</option>
+<option value="43">Mubarak aj-Jabir suburb</option>
+<option value="44">South Surra</option>
+<option value="45">Hittin</option>
+<option value="46">Mubarak al-Kabeer</option>
+<option value="47">Ad?n</option>
+<option value="48">Qurain</option>
+<option value="49">Qus?r</option>
+<option value="50">Sabah as-Salim suburb</option>
+<option value="51">Mis?la</option>
+<option value="52">Abu &#39;Fteira</option>
+<option value="53">Sabh?n</option>
+<option value="54">Fint?s</option>
+<option value="55">Funait?s</option>
+<option value="56">Ahmadi</option>
+<option value="57">Aqila</option>
+<option value="58">Zuhar</option>
+<option value="59">Miqwa&#39;</option>
+<option value="60">Mahbula</option>
+<option value="61">Rigga</option>
+<option value="62">Hadiya</option>
+<option value="63">Abu Hulaifa</option>
+<option value="64">Sabahiya</option>
+<option value="65">Mangaf</option>
+<option value="66">Fahaheel</option>
+<option value="67">Wafra</option>
+<option value="68">Zoor</option>
+<option value="69">Khairan</option>
+<option value="70">Abdullah Port</option>
+<option value="71">Agricultural Wafra</option>
+<option value="72">Bneidar</option>
+<option value="73">Jilei&#39;a</option>
+<option value="74">Jabir al-Ali Suburb</option>
+<option value="75">Fahd al-Ahmad Suburb</option>
+<option value="76">Shu&#39;aiba</option>
+<option value="77">Sabah al-Ahmad City</option>
+<option value="78">Nuwaiseeb</option>
+<option value="79">Khairan City</option>
+<option value="80">Ali as-Salim suburb</option>
+<option value="81">Sabah al-Ahmad Nautical City</option>
+						</select>
+					</div>
+					<div class="col-md-3 place-grid">
+						<label><input type="checkbox" id='id_internet' name='internet'> Internet </label>
+						<label><input type="checkbox" id='id_pets' name="pets"> Pets Allowed </label>
+						<label><input type="checkbox" id='id_maidroom' name="maidroom"> Maidroom </label>
+						<label><input type="checkbox" id='id_lift' name="lift"> Elevator </label>
+						<label><input type="checkbox" id= 'id_balcony' name="balcony"> Balcony </label>
+						<label><input type="number" id= 'id_parking' name="parking"> Parking </label>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="place-grids">
+					<div class="col-md-2 place-grid1">
+						<h5>Livingrooms</h5>
+						<select class="sel" id='id_livingroom'>
+						<option value="">any</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						</select>
+					</div>
+					<div class="col-md-2 place-grid1">
+						<h5>Bathrooms</h5>
+						<select class="sel" id='id_bathroom'>
+							<option value="">any</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div class="col-md-2 place-grid1">
+						<h5>Min Price</h5>
+						<select class="sel" id='id_minprice'>
+							<option value="">any</option>
+							<option value="100">100 KD</option>
+							<option value="200">200 KD</option>
+							<option value="300">300 KD</option>
+							<option value="500">500 KD</option>
+							<option value="800">800 KD</option>
+							<option value="1000">1000 KD</option>
+							<option value="1200">1200 KD</option>
+							<option value="1500">1500 KD</option>
+
+						</select>
+					</div>
+					<div class="col-md-2 place-grid1">
+						<h5>Max Price</h5>
+						<select class="sel" id='maxprice'>
+							<option value="">any</option>
+							<option value="200">200 KD</option>
+							<option value="500">500 KD</option>
+							<option value="1000">1000 KD</option>
+							<option value="2000">2000 KD</option>
+							<option value="3000">3000 KD</option>
+							<option value="5000">5000 KD</option>
+						</select>
+					</div>
+
+					<div class="col-md-4 search">
+					        {%csrf_token%}
+						<input type="submit" value="Search">
+					</form>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
         
 {% endblock %}

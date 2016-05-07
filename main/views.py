@@ -76,32 +76,19 @@ def sendmail(request):
 
 	return render(request, 'contact.html', context)
 
-	
-
-# def msg_confirmation(request):
-# 	form = EmailForm(request.POST or None)
-
-# 	if form.is_valid():
-# 		save_it = form.save(commit=False)
-# 		save_it.save()
-
-# 		subject = 'We Got Your Message'
-# 		message = 'Thank You for contacting us. We will get back to you as soon as we can :)'
-# 		from_email = settings.EMAIL_HOST_USER
-# 		to_list = [save_it.email, settings.EMAIL_HOST_USER]
-
-# 		messages.success(request, 'Thank you for contacting us.')
-
 
 
 def json_response(request):
 	search_string = request.GET.get('search', '')
-	if search_string != "":
+	if search_string == "":
 		area_list = []
 		for gov in Gov.objects.filter(name__icontains=search_string):
-			area_list.append([gov.name, gov.pk, 'gov'])
+		#	x = {'name':gov.name, 'id':gov.pk,'type': 'gov'}
+			x = {'name':gov.name, 'id':gov.pk}
+			area_list.append(x)
 		for area in Area.objects.filter(name__icontains=search_string):
-			area_list.append([area.name, area.pk, 'area'])
+	#		area_list.append(['name' ,area.name, area.pk, 'area'])
+			area_list.append({'name':area.name, 'id':area.pk})
 		return JsonResponse(area_list, safe=False)
 	else:
 		return JsonResponse("", safe=False)
@@ -139,28 +126,32 @@ def ajax_search(request):
 # 	return render_to_response('details.html', context, context_instance=RequestContext(request))
 
 
-def list_view(request):
+# def list_view(request):
+# 	context = {}
+# 	type_of_search = request.GET.get('type', 'area')
+# 	search_id = request.GET.get('id', None)
+# 	apartments = []
+# 	if type_of_search == 'gov':
+# 		gov = Gov.objects.get(id=search_id)
+
+# 		for area in gov.area_set.all():
+# 			for apartment in area.apartment_set.all():
+# 				apartments.append(apartment)
+
+# 		context['apartments'] = apartments
+
+# 	elif type_of_search == 'area':
+# 		area = Area.objects.get(id=search_id)
+# 		for apartment in area.apartment_set.all():
+# 			apartments.append(apartment)
+# 		context['apartments'] = apartments
+# 	return render(request, 'apartment_list.html', context)
+
+def apartment_list(request):
 	context = {}
-	type_of_search = request.GET.get('type', None)
-	search_id = request.GET.get('id', None)
-	apartments = []
-	if type_of_search == 'gov':
-		gov = Gov.objects.get(id=search_id)
-
-		for area in gov.area_set.all():
-			for apartment in area.apartment_set.all():
-				apartments.append(apartment)
-
-		context['apartments'] = apartments
-
-	elif type_of_search == 'area':
-		area = Area.objects.get(id=search_id)
-		for apartment in area.apartment_set.all():
-			apartments.append(apartment)
-		context['apartments'] = apartments
-	return render(request, 'list_view.html', context)
-
-
+	apartments = Apartment.objects.all()
+	context['apartments'] = apartments
+	return render(request, 'apartment_list.html', context)
 
 def apartment_detail(request, pk):
 	context = {}
@@ -274,41 +265,43 @@ def homepage(request):
 	return render(request, 'index.html')
 
 def search_view(request):
-	context = {}
-	context['form'] = Searchbox()
-	if request.method == 'POST':
-		form = Searchbox(request.POST or None)
-		context['form'] = form
-		if form.is_valid():
-			x = {}
-			if form.cleaned_data.get('parking', None) != None:
-				x['parking__gte']=form.cleaned_data.get('parking', '0')
-			if form.cleaned_data.get('internet', None) is True:
-				x['internet']=form.cleaned_data.get('internet', None)
-			if form.cleaned_data.get('pets', None) is True:
-				x['pets']=form.cleaned_data.get('pets', None)
-			if form.cleaned_data.get('maidroom', None) is True:
-				x['maidroom']=form.cleaned_data.get('maidroom', None)
-			if form.cleaned_data.get('lift', None) is True:
-				x['lift']=form.cleaned_data.get('lift', None)
-			if form.cleaned_data.get('balcony', None) is True:
-				x['balcony']=form.cleaned_data.get('balcony', None)
-			if form.cleaned_data.get('bills', None) is True:
-				x['bills']=form.cleaned_data.get('bills', None)
-			if form.cleaned_data.get('area', None) != None:
-				area=form.cleaned_data.get('area', None)
-				search_result = area.apartment_set.filter(**x)
-				# print search_result
-			else:
-				areas=Area.objects.all()
-				search_result = []
-				for area in areas:
-					if not area.apartment_set.filter(**x):
-						empty = 'empty'
-					else:
-						search_result.append(area.apartment_set.filter(**x))
-				print search_result
-				context['apartments'] = search_result
-			return render(request, 'list_view.html', context)
-	print 'first'
-	return render(request, 'search.html', context)
+    context = {}
+    context['form'] = Searchbox()
+    if request.method == 'POST':
+        form = Searchbox(request.POST or None)
+        context['form'] = form
+        if form.is_valid():
+            x = {}
+            if form.cleaned_data.get('parking', None) != None:
+                x['parking__gte']=form.cleaned_data.get('parking', '0')
+                print x['parking__gte']
+            if form.cleaned_data.get('internet', None) is True:
+                x['internet']=form.cleaned_data.get('internet', None)
+            if form.cleaned_data.get('pets', None) is True:
+                x['pets']=form.cleaned_data.get('pets', None)
+            if form.cleaned_data.get('maidroom', None) is True:
+                x['maidroom']=form.cleaned_data.get('maidroom', None)
+            if form.cleaned_data.get('lift', None) is True:
+                x['lift']=form.cleaned_data.get('lift', None)
+            if form.cleaned_data.get('balcony', None) is True:
+                x['balcony']=form.cleaned_data.get('balcony', None)
+            if form.cleaned_data.get('bills', None) is True:
+                x['bills']=form.cleaned_data.get('bills', None)
+            if form.cleaned_data.get('area', None) != None:
+                area=form.cleaned_data.get('area', None)
+                search_result = area.apartment_set.filter(**x)
+                print x
+                print area
+            else:
+                areas=Area.objects.all()
+                search_result = []
+                for area in areas:
+                    if not area.apartment_set.filter(**x):
+                        empty = 'empty'
+                    else:
+                        search_result.append(area.apartment_set.filter(**x))
+                print search_result
+                context['apartments'] = search_result
+            return render(request, 'apartment_list.html', context)
+    print 'first'
+    return render(request, 'apartment_list.html', context)

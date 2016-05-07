@@ -74,7 +74,7 @@ class Gov(models.Model):
 
 class Area(models.Model):
 	name = models.CharField(max_length=255)
-	gov = models.ForeignKey('main.Gov')
+	gov = models.ForeignKey('main.Gov',null=True,blank=True)
 
 	def __unicode__(self):
 		return '%s' % self.name
