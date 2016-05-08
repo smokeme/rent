@@ -2,70 +2,70 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Real Space a Real Estates and Builders Category Flat Bootstrap Responsive Website Template | For Rent :: w3layouts </title>
-<!--css-->
-<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
-<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
-<!--css-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--js-->
-<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.js' %}"></script>
-<!--js-->
-<!--fonts-->
-<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-<!---fonts-->
-<!-- FlexSlider -->
-	 <script src="{% static 'js/jquery.flexslider.js' %}"></script>
-		<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
-			<script>
+	<title>Real Space a Real Estates and Builders Category Flat Bootstrap Responsive Website Template | For Rent :: w3layouts </title>
+	<!--css-->
+	<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+	<!--css-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--js-->
+	<script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+	<!--js-->
+	<!--fonts-->
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+	<!---fonts-->
+	<!-- FlexSlider -->
+	<script src="{% static 'js/jquery.flexslider.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+	<script>
 			// Can also be used with $(document).ready()
-				$(window).load(function() {
+			$(window).load(function() {
 				$('.flexslider').flexslider({
-				animation: "slide",
-				controlNav: "thumbnails"
+					animation: "slide",
+					controlNav: "thumbnails"
 				});
-				});
-			</script>
-			<!-- //FlexSlider-->
-</head>
-<body>
+			});
+		</script>
+		<!-- //FlexSlider-->
+	</head>
+	<body>
 		<!--header-->
-			<div class="header-section">
-				<div class="container">
-					<div class="head-top">
-						<div class="social-icon">
-							<a href="#"><i class="icon"></i></a>
-							<a href="#"><i class="icon1"></i></a>
-							<a href="#"><i class="icon2"></i></a>
-							<a href="#"><i class="icon3"></i></a>
-							<a href="#"><i class="icon4"></i></a>
-						</div>
-						<div class="email">
+		<div class="header-section">
+			<div class="container">
+				<div class="head-top">
+					<div class="social-icon">
+						<a href="#"><i class="icon"></i></a>
+						<a href="#"><i class="icon1"></i></a>
+						<a href="#"><i class="icon2"></i></a>
+						<a href="#"><i class="icon3"></i></a>
+						<a href="#"><i class="icon4"></i></a>
+					</div>
+					<div class="email">
 						<ul>
 							<!--<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>-->
 
 							{% if request.user.is_authenticated %}
-                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/profile/">Welcome : {{ request.user.first_name }}</a><br>
-                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
-                        	{% endif %}
+							<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/profile/">Welcome : {{ request.user.first_name }}</a><br>
+								<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="/logout/">Logout</a></li>
+								{% endif %}
 
-                        	{% if not request.user.is_authenticated %}
-							<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-							<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
-							{% endif %}
-						</ul>
+								{% if not request.user.is_authenticated %}
+								<li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
+								<li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
+								{% endif %}
+							</ul>
 						</div>
 						<div class="clearfix"></div>
 					</div>
 					<nav class="navbar navbar-default">
-					<!--Brand and toggle get grouped for better mobile display-->
+						<!--Brand and toggle get grouped for better mobile display-->
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 								<span class="sr-only">Toggle navigation</span>
@@ -78,226 +78,203 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
+						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
 								<li class="active"><a href="/homepage/">Home <span class="sr-only">(current)</span></a></li>
-									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li><a href="about.html">About</a></li>
-												<li><a href="services.html">Services</a></li>
-												<li><a href="agents.html">Agents</a></li>
-												<li><a href="forrent.html">For Rent</a></li>
-												<li><a href="forsale.html">For Sale</a></li>
-												<li><a href="pricing.html">Pricing</a></li>
-												<li><a href="faqs.html">FAQs</a></li>
-												<li><a href="idxpress.html">IDXpress</a></li>
-												<li><a href="terms.html">Terms of Use</a></li>
-												<li><a href="privacy.html">Privacy Policy</a></li>
-											</ul>
-									</li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="about.html">About</a></li>
+										<li><a href="services.html">Services</a></li>
+										<li><a href="agents.html">Agents</a></li>
+										<li><a href="forrent.html">For Rent</a></li>
+										<li><a href="forsale.html">For Sale</a></li>
+										<li><a href="pricing.html">Pricing</a></li>
+										<li><a href="faqs.html">FAQs</a></li>
+										<li><a href="idxpress.html">IDXpress</a></li>
+										<li><a href="terms.html">Terms of Use</a></li>
+										<li><a href="privacy.html">Privacy Policy</a></li>
+									</ul>
+								</li>
 
 								
 								<!--<li><a href="codes.html">Codes</a></li>-->
 								<li><a href="/sendmail/">Contact</a></li>
 								
-								</ul>
+							</ul>
 
 
- 									<div class="input-group"  style="float:right;">
-										<form action='/search/' method='POST'>
-										{% csrf_token %}
-										<input id='search' type="text" class="form-control" placeholder="Search for...">
+							<div class="input-group"  style="float:right;">
+								<form action='/search/' method='POST'>
+									{% csrf_token %}
+									<input id='search' type="text" class="form-control" placeholder="Search for...">
 									
-										</form>
-									</div> 
+								</form>
+							</div> 
 							<div class="clearfix"></div>
 						</div>
 					</nav>
 				</div>
 			</div>
-		<!--header-->
-		<!--banner-->
-		<div class="banner-section">
-			<div class="container">
-				<h2>Search Results</h2>
-			</div>
-		</div>
-		<!--banner-->
-		<div class="content">
-			<div class="properties-section">
+			<!--header-->
+			<!--banner-->
+			<div class="banner-section">
 				<div class="container">
-				<div class="properties-grids">
-					<div class="col-md-9 forsales-left">
-						<div class="forsale">
-							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-								<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
-									<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true"><img src="{% static 'images/menu1.png' %}"></a></li>
-									<li role="presentation"><a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile"><img src="{% static 'images/menu.png' %}"></a></li>
-								</ul>
+					<h2>Search Results</h2>
+				</div>
+			</div>
+			<!--banner-->
+			<div class="content">
+				<div class="properties-section">
+					<div class="container">
+						<div class="properties-grids">
+							<div class="col-md-9 forsales-left">
+								<div class="forsale">
+									<div class="row">
 
-							
-								<div id="myTabContent" class="tab-content">
-									<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">	
-									
-									{% for apartment in apartments %}
-										{% if apartment %}	
-										<div class="forsale-grids">
-											<h4><a href="/apartment_detail/{{apartment.id}}">{{ apartment.name }}</a></h4>
-											<div class="forsale1">
-												<div class="forsale-left">
-													<a href="/apartment_detail/{{apartment.id}}"><img src="{{apartment.image}}" class="img-responsive" alt="/"></a>
-												</div>
-												<div class="forsale-right">
-													<h5><label>KD</label>{{ apartment.rent }} Per Month - <span>{{ apartment.area }}</span></h5>
-													<a href="/apartment_detail/{{apartment.id}}"class="button4">more details</a>
-												</div>
-												<div class="clearfix"></div>
-												<ul>
-													<li><span>{{apartment.bathrooms}}</span>Bathrooms</li>
-													<li><span>{{apartment.bedroom}}</span>Bedrooms</li>
-												</ul>
-											</div>
-										</div>									
+										{% for apartment in apartments.0 %}
+										
+
+										{% if forloop.counter0|divisibleby:3 %}
+
+										<div class="forsale-grids1">
 										{% endif %}
-									{% endfor %}
-									</div>	
-									
+
+											<div class="col-md-4 forsale-grid1">
+												<img src="{% static '{{apartment.image}}' %}">
+												<h5><a href="/apartment_detail/{{apartment.pk}}">{{ apartment.name }}</a></h5>
+												<p>({{ apartment.area }})<a href="/apartment_detail/{{apartment.pk}}">, Know More</a></p>
+												<h6>KD {{ apartment.rent }}/Month</h6>
+											</div>
+											{% if forloop.counter0|divisibleby:3 %}
+										</div>
+										{% endif %}
+
+										{% endfor %}
+									</div>
 								</div>
-									
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3 properties-right">
-						<div class="properties-top">
-							<h4>Find Your Place</h4>
-							<div class="yourplace">
-								<form action="/search_view/" method='POST'>
-										<label for="id_area"><h5> All Areas:</label> <select class='sel' id="id_area" name="area">
-											<option value="" selected="selected">---------</option>
-											<option value="1">Kuwait City</option>
-											<option value="2">Dasm?n</option>
-											<option value="3">Sharq</option>
-											<option value="4">Dasma</option>
-											<option value="5">Da&#39;iya</option>
-											<option value="6">Saw?bir</option>
-											<option value="7">Mirg?b</option>
-											<option value="8">Jibla</option>
-											<option value="9">Salhiya</option>
-											<option value="10">Bneid il-G?r</option>
-											<option value="11">Keifan</option>
-											<option value="12">Mans?riya</option>
-											<option value="13">Abdullah as-Salim suburb</option>
-											<option value="14">Nuzha</option>
-											<option value="15">Faiha&#39;</option>
-											<option value="16">Shamiya</option>
-											<option value="17">Rawda</option>
-											<option value="18">Adiliya</option>
-											<option value="19">Khaldiya</option>
-											<option value="20">Qadsiya</option>
-											<option value="21">Qurtuba</option>
-											<option value="22">Surra</option>
-											<option value="23">Yarm?k</option>
-											<option value="24">Shuwaikh</option>
-											<option value="25">Rai</option>
-											<option value="26">Ghirnata</option>
-											<option value="27">Sulaibikhat</option>
-											<option value="28">Doha</option>
-											<option value="29">Nahdha</option>
-											<option value="30">Jabir al-Ahmad City</option>
-											<option value="31">Qairaw?n</option>
-											<option value="32">Hawally</option>
-											<option value="33">Rumaithiya</option>
-											<option value="34">Jabriya</option>
-											<option value="35">Salmiya</option>
-											<option value="36">Mishrif</option>
-											<option value="37">Sha&#39;ab</option>
-											<option value="38">Bay?n</option>
-											<option value="39">Bi&#39;di&#39;</option>
-											<option value="40">Nigra</option>
-											<option value="41">Salwa</option>
-											<option value="42">Maidan Hawalli</option>
-											<option value="43">Mubarak aj-Jabir suburb</option>
-											<option value="44">South Surra</option>
-											<option value="45">Hittin</option>
-											<option value="46">Mubarak al-Kabeer</option>
-											<option value="47">Ad?n</option>
-											<option value="48">Qurain</option>
-											<option value="49">Qus?r</option>
-											<option value="50">Sabah as-Salim suburb</option>
-											<option value="51">Mis?la</option>
-											<option value="52">Abu &#39;Fteira</option>
-											<option value="53">Sabh?n</option>
-											<option value="54">Fint?s</option>
-											<option value="55">Funait?s</option>
-											<option value="56">Ahmadi</option>
-											<option value="57">Aqila</option>
-											<option value="58">Zuhar</option>
-											<option value="59">Miqwa&#39;</option>
-											<option value="60">Mahbula</option>
-											<option value="61">Rigga</option>
-											<option value="62">Hadiya</option>
-											<option value="63">Abu Hulaifa</option>
-											<option value="64">Sabahiya</option>
-											<option value="65">Mangaf</option>
-											<option value="66">Fahaheel</option>
-											<option value="67">Wafra</option>
-											<option value="68">Zoor</option>
-											<option value="69">Khairan</option>
-											<option value="70">Abdullah Port</option>
-											<option value="71">Agricultural Wafra</option>
-											<option value="72">Bneidar</option>
-											<option value="73">Jilei&#39;a</option>
-											<option value="74">Jabir al-Ali Suburb</option>
-											<option value="75">Fahd al-Ahmad Suburb</option>
-											<option value="76">Shu&#39;aiba</option>
-											<option value="77">Sabah al-Ahmad City</option>
-											<option value="78">Nuwaiseeb</option>
-											<option value="79">Khairan City</option>
-											<option value="80">Ali as-Salim suburb</option>
-											<option value="81">Sabah al-Ahmad Nautical City</option>
-											</select>
+				</div>
+			</div>
+			<div class="col-md-3 properties-right">
+				<div class="properties-top">
+					<h4>Find Your Place</h4>
+					<div class="yourplace">
+						<form action="/search_view/" method='POST'>
+							<label for="id_area"><h5> All Areas:</label> <select class='sel' id="id_area" name="area">
+							<option value="" selected="selected">---------</option>
+							<option value="1">Kuwait City</option>
+							<option value="2">Dasm?n</option>
+							<option value="3">Sharq</option>
+							<option value="4">Dasma</option>
+							<option value="5">Da&#39;iya</option>
+							<option value="6">Saw?bir</option>
+							<option value="7">Mirg?b</option>
+							<option value="8">Jibla</option>
+							<option value="9">Salhiya</option>
+							<option value="10">Bneid il-G?r</option>
+							<option value="11">Keifan</option>
+							<option value="12">Mans?riya</option>
+							<option value="13">Abdullah as-Salim suburb</option>
+							<option value="14">Nuzha</option>
+							<option value="15">Faiha&#39;</option>
+							<option value="16">Shamiya</option>
+							<option value="17">Rawda</option>
+							<option value="18">Adiliya</option>
+							<option value="19">Khaldiya</option>
+							<option value="20">Qadsiya</option>
+							<option value="21">Qurtuba</option>
+							<option value="22">Surra</option>
+							<option value="23">Yarm?k</option>
+							<option value="24">Shuwaikh</option>
+							<option value="25">Rai</option>
+							<option value="26">Ghirnata</option>
+							<option value="27">Sulaibikhat</option>
+							<option value="28">Doha</option>
+							<option value="29">Nahdha</option>
+							<option value="30">Jabir al-Ahmad City</option>
+							<option value="31">Qairaw?n</option>
+							<option value="32">Hawally</option>
+							<option value="33">Rumaithiya</option>
+							<option value="34">Jabriya</option>
+							<option value="35">Salmiya</option>
+							<option value="36">Mishrif</option>
+							<option value="37">Sha&#39;ab</option>
+							<option value="38">Bay?n</option>
+							<option value="39">Bi&#39;di&#39;</option>
+							<option value="40">Nigra</option>
+							<option value="41">Salwa</option>
+							<option value="42">Maidan Hawalli</option>
+							<option value="43">Mubarak aj-Jabir suburb</option>
+							<option value="44">South Surra</option>
+							<option value="45">Hittin</option>
+							<option value="46">Mubarak al-Kabeer</option>
+							<option value="47">Ad?n</option>
+							<option value="48">Qurain</option>
+							<option value="49">Qus?r</option>
+							<option value="50">Sabah as-Salim suburb</option>
+							<option value="51">Mis?la</option>
+							<option value="52">Abu &#39;Fteira</option>
+							<option value="53">Sabh?n</option>
+							<option value="54">Fint?s</option>
+							<option value="55">Funait?s</option>
+							<option value="56">Ahmadi</option>
+							<option value="57">Aqila</option>
+							<option value="58">Zuhar</option>
+							<option value="59">Miqwa&#39;</option>
+							<option value="60">Mahbula</option>
+							<option value="61">Rigga</option>
+							<option value="62">Hadiya</option>
+							<option value="63">Abu Hulaifa</option>
+							<option value="64">Sabahiya</option>
+							<option value="65">Mangaf</option>
+							<option value="66">Fahaheel</option>
+							<option value="67">Wafra</option>
+							<option value="68">Zoor</option>
+							<option value="69">Khairan</option>
+							<option value="70">Abdullah Port</option>
+							<option value="71">Agricultural Wafra</option>
+							<option value="72">Bneidar</option>
+							<option value="73">Jilei&#39;a</option>
+							<option value="74">Jabir al-Ali Suburb</option>
+							<option value="75">Fahd al-Ahmad Suburb</option>
+							<option value="76">Shu&#39;aiba</option>
+							<option value="77">Sabah al-Ahmad City</option>
+							<option value="78">Nuwaiseeb</option>
+							<option value="79">Khairan City</option>
+							<option value="80">Ali as-Salim suburb</option>
+							<option value="81">Sabah al-Ahmad Nautical City</option>
+						</select>
 					</div>
-							</div>
-	
-
-							<div class="yourplace">
-								<h5>Livingrooms</h5>
-								<select class="sel2">
-									<option value="">any</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-								</select>
-							</div>
-							<div class="yourplace-grids">
-								<!--<div class="col-md-6 yourplace-grid">
-									<h5>Min Beds</h5>
-									<select class="sel3">
-										<option value="">any</option>
-										<option value="">1</option>
-										<option value="">2</option>
-										<option value="">3</option>
-										<option value="">4</option>
-										<option value="">5</option>
-									</select>
-								</div>-->
-								<div class="yourplace">
-									<h5>Bathrooms</h5>
-									<select class="sel3">
-										<option value="">any</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-									</select>
-								</div>
-								<div class="clearfix"></div>
-							</div>
+				</div>
+				<div class="yourplace">
+					<h5>Livingrooms</h5>
+					<select class="sel2">
+						<option value="">any</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</div>
+				<div class="yourplace-grids">
+					<div class="yourplace">
+						<h5>Bathrooms</h5>
+						<select class="sel3">
+							<option value="">any</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+					<div class="clearfix"></div>
+				</div>
 							<div class="yourplace-grids1">
 								<div class="col-md-6 yourplace-grid">
 									<h5>Min Price</h5>
@@ -334,63 +311,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<label><input type="number" id= 'id_parking' name="parking"><h5>Parking</h5></label>
 								</div>
 								<div class="clearfix"></div>
-									{%csrf_token%}
+								{%csrf_token%}
 							</div>
 							<div class="search1">
-							<form>
-								<input type="submit" value="Search">
-							</form>
+								<form>
+									<input type="submit" value="Search">
+								</form>
 							</div>
 						</div>
 					</div>
 					<div class="clearfix"></div>
 				</div>
-				</div>
 			</div>
 		</div>
-		<!--footer-->
-			<div class="footer-section">
-				<div class="container">
-					<div class="footer-grids">
-						<div class="col-md-3 footer-grid">
-							<h4>About Real Homes</h4>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-						</div>
-						<div class="col-md-3 footer-grid">
-							<h4>Recent Posts</h4>
-							<ul>
-								<li><a href="#">Lorem Post With Image Format</a></li>
-								<li><a href="#">Example Video Blog Post</a></li>
-								<li><a href="#">Example Post With Gallery Post </a></li>
-								<li><a href="#">Example Video Blog Post</a></li>
-								<li><a href="#">Lorem Post With Image Format</a></li>
-								<li><a href="#">Example Video Blog Post</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3 footer-grid">
-							<h4>Useful links</h4>
-							<ul>
-								<li><a href="terms.html">Terms of Use</a></li>
-								<li><a href="privacy.html">Privacy Policy</a></li>
-								<li><a href="contact.html">Contact Support </a></li>
-								<li><a href="agents.html"> All Agents</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="faqs.html">FAQs</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3 footer-grid">
-							<h4>Get In Touch</h4>
-							<p>8901 Marmora Road</p>
-							<p>Glasgow, DO4 89GR.</p>
-							<p>Freephone : +1 234 567 890</p>
-							<p>Telephone : +1 234 567 890</p>
-							<p>FAX : + 1 234 567 890</p>
-							<p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
+	</div>
+	<!--footer-->
+	<div class="footer-section">
+		<div class="container">
+			<div class="footer-grids">
+				<div class="col-md-3 footer-grid">
+					<h4>About Real Homes</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 				</div>
+				<div class="col-md-3 footer-grid">
+					<h4>Recent Posts</h4>
+					<ul>
+						<li><a href="#">Lorem Post With Image Format</a></li>
+						<li><a href="#">Example Video Blog Post</a></li>
+						<li><a href="#">Example Post With Gallery Post </a></li>
+						<li><a href="#">Example Video Blog Post</a></li>
+						<li><a href="#">Lorem Post With Image Format</a></li>
+						<li><a href="#">Example Video Blog Post</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-grid">
+					<h4>Useful links</h4>
+					<ul>
+						<li><a href="terms.html">Terms of Use</a></li>
+						<li><a href="privacy.html">Privacy Policy</a></li>
+						<li><a href="contact.html">Contact Support </a></li>
+						<li><a href="agents.html"> All Agents</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faqs.html">FAQs</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3 footer-grid">
+					<h4>Get In Touch</h4>
+					<p>8901 Marmora Road</p>
+					<p>Glasgow, DO4 89GR.</p>
+					<p>Freephone : +1 234 567 890</p>
+					<p>Telephone : +1 234 567 890</p>
+					<p>FAX : + 1 234 567 890</p>
+					<p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
+				</div>
+				<div class="clearfix"> </div>
 			</div>
+		</div>
+	</div>
 			<!---footer--->
 			<!--copy-->
 			<div class="copy-section">
@@ -398,8 +375,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<p>&copy; 2016 Real Space. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
 				</div>
 			</div>
-		<!--copy-->
-<!-- login -->
+			<!--copy-->
+			<!-- login -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content modal-info">
@@ -423,7 +400,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<input type="submit" value="Login Now" >
 										</form>
 									</div>
-																
+
 								</div>
 								<p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
 							</div>
@@ -462,51 +439,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 			<!-- //Register -->
-</body>
-	<script type='text/javascript'>
-		$('#seardch').on('keyup', function() {
-		$.ajax({
-			type: 'GET',
-			url: '/json_response/',
-			data: {
-				search:$('#seadrch').val(),
-			},
-			error:function() {
-				$('#results').html('<p>Error</p>');
+		</body>
+		<script type='text/javascript'>
+			$('#seardch').on('keyup', function() {
+				$.ajax({
+					type: 'GET',
+					url: '/json_response/',
+					data: {
+						search:$('#seadrch').val(),
+					},
+					error:function() {
+						$('#results').html('<p>Error</p>');
 
-			},
-			success:function(data) {
-				$('#results').text('');
-				for(i=0; i < data.length; i++) {
-				$('#results').append('<a class= "text-faded" href="../apartment_list/?id=' + data[i][2] + '&type=' + data[i][3] + '"</a>"' + data[i][1] + '');
-				}
-				}
-			
-		})
-	})
-	var options = {
-			url: '/static/js/areas.json',
-  getValue: "name",
+					},
+					success:function(data) {
+						$('#results').text('');
+						for(i=0; i < data.length; i++) {
+							$('#results').append('<a class= "text-faded" href="../apartment_list/?id=' + data[i][2] + '&type=' + data[i][3] + '"</a>"' + data[i][1] + '');
+						}
+					}
 
-  list: {	
-  		match: {
-			enabled: true
-		},
-  	onClickEvent: function() {
-			var value = $("#search").getSelectedItemData().id;
+				})
+			})
+			var options = {
+				url: '/static/js/areas.json',
+				getValue: "name",
 
-			$("#results").val(value).trigger("change");
-			document.location = '/apartment_list/?id=' + $("#search").getSelectedItemData().id 
-		}
-  },
+				list: {	
+					match: {
+						enabled: true
+					},
+					onClickEvent: function() {
+						var value = $("#search").getSelectedItemData().id;
 
-  theme: "square"
-};
+						$("#results").val(value).trigger("change");
+						document.location = '/apartment_list/?id=' + $("#search").getSelectedItemData().id 
+					}
+				},
 
-$("#search").easyAutocomplete(options);
-ser = $('#search');              
-	$(ser).on('focus', function() {
-		$('.easy-autocomplete-container').css('z-index', '99')
-	})
-</script>
-</html>
+				theme: "square"
+			};
+
+			$("#search").easyAutocomplete(options);
+			ser = $('#search');              
+			$(ser).on('focus', function() {
+				$('.easy-autocomplete-container').css('z-index', '99')
+			})
+		</script>
+		</html>
